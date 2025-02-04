@@ -1,46 +1,5 @@
 <div class="page">
-    <div class="menu">
-        <div class="container-menu">
-            <%= image_tag "logo.png", class: "logo-menu" %>
-            <ul>
-                <li class="<%= 'active' if current_page?(instrucoes_path) %>">
-                    <% if current_page?(instrucoes_path) %>
-                        <%= image_tag "icon-home-selected.svg", class: "icon" %>
-                        <p class="green">Início</p>
-                    <% else %>
-                        <%= link_to instrucoes_path, class: "links" do %>
-                            <%= image_tag "icon-home.svg", class: "icon" %>
-                            <p>Início</p>
-                        <% end %>
-                    <% end %>
-                </li>
-
-                <li class="<%= 'active' if current_page?(procedures_path) %>">
-                    <% if current_page?(procedures_path) %>
-                        <%= image_tag "icon-procedures-selected.svg", class: "icon" %>
-                        <p class="green">Procedimentos</p>
-                    <% else %>
-                        <%= link_to procedures_path, class: "links" do %>
-                            <%= image_tag "icon-procedures.svg", class: "icon" %>
-                            <p>Procedimentos</p>
-                        <% end %>
-                    <% end %>
-                </li>
-
-                <li class="<%= 'active' if current_page?(opine_path) %>">
-                    <% if current_page?(opine_path) %>
-                        <%= image_tag "icon-opine-selected.svg", class: "icon" %>
-                        <p class="green">Dê sua opinião!</p>
-                    <% else %>
-                        <%= link_to opine_path, class: "links" do %>
-                            <%= image_tag "icon-opine.svg", class: "icon" %>
-                            <p>Dê sua opinião!</p>
-                        <% end %>
-                    <% end %>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <%= render 'shared/navbar' %>
     <div class="active-screen"></div>
 </div>
 
