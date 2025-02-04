@@ -1,0 +1,18 @@
+current directory: /home/felipe/Documentos/trabalhos/INCLUA_MED/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+/home/felipe/.rbenv/versions/3.1.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/felipe/Documentos/trabalhos/INCLUA_MED/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250203-1003296-4cwblo sitelibdir\=./.gem.20250203-1003296-4cwblo clean
+
+current directory: /home/felipe/Documentos/trabalhos/INCLUA_MED/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250203-1003296-4cwblo sitelibdir\=./.gem.20250203-1003296-4cwblo
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/felipe/Documentos/trabalhos/INCLUA_MED/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250203-1003296-4cwblo sitelibdir\=./.gem.20250203-1003296-4cwblo install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20250203-1003296-4cwblo/racc
+
+current directory: /home/felipe/Documentos/trabalhos/INCLUA_MED/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250203-1003296-4cwblo sitelibdir\=./.gem.20250203-1003296-4cwblo clean

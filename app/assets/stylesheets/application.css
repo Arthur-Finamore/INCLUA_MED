@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "font-awesome";
+
+
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ }
+
+ .active {
+   color: #98FF98;
+ }

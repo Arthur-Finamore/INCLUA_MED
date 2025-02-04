@@ -106,6 +106,15 @@ GEM
     drb (2.2.1)
     error_highlight (0.7.0)
     erubi (1.13.1)
+    ffi (1.17.1-aarch64-linux-gnu)
+    ffi (1.17.1-aarch64-linux-musl)
+    ffi (1.17.1-arm-linux-gnu)
+    ffi (1.17.1-arm-linux-musl)
+    ffi (1.17.1-arm64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
+    ffi (1.17.1-x86_64-linux-musl)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -209,6 +218,9 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rake (13.2.1)
+    rb-fsevent (0.11.2)
+    rb-inotify (0.11.1)
+      ffi (~> 1.0)
     rdoc (6.11.0)
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
@@ -216,6 +228,11 @@ GEM
       io-console (~> 0.5)
     rexml (3.4.0)
     rubyzip (2.4.1)
+    sass (3.7.4)
+      sass-listen (~> 4.0.0)
+    sass-listen (4.0.0)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
     securerandom (0.4.1)
     selenium-webdriver (4.28.0)
       base64 (~> 0.2)
@@ -272,14 +289,18 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  activesupport (= 7.1.5.1)
   bootsnap
   capybara
   debug
   error_highlight (>= 0.4.0)
+  font-awesome-sass (~> 4.7)
   importmap-rails
   jbuilder
+  nokogiri (>= 1.14)
   puma (>= 5.0)
-  rails (~> 7.1.5, >= 7.1.5.1)
+  rails (~> 7.1.5.1)
+  rails-html-sanitizer (~> 1.6)
   selenium-webdriver
   sprockets-rails
   sqlite3 (>= 1.4)

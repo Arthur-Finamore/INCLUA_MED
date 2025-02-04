@@ -1,0 +1,19 @@
+current directory: /home/felipe/Documentos/trabalhos/INCLUA_MED/vendor/bundle/ruby/3.1.0/gems/debug-1.10.0/ext/debug
+/home/felipe/.rbenv/versions/3.1.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/felipe/Documentos/trabalhos/INCLUA_MED/vendor/bundle/ruby/3.1.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250203-1003296-5vqgyn sitelibdir\=./.gem.20250203-1003296-5vqgyn clean
+
+current directory: /home/felipe/Documentos/trabalhos/INCLUA_MED/vendor/bundle/ruby/3.1.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250203-1003296-5vqgyn sitelibdir\=./.gem.20250203-1003296-5vqgyn
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/felipe/Documentos/trabalhos/INCLUA_MED/vendor/bundle/ruby/3.1.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250203-1003296-5vqgyn sitelibdir\=./.gem.20250203-1003296-5vqgyn install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20250203-1003296-5vqgyn/debug
+
+current directory: /home/felipe/Documentos/trabalhos/INCLUA_MED/vendor/bundle/ruby/3.1.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250203-1003296-5vqgyn sitelibdir\=./.gem.20250203-1003296-5vqgyn clean
