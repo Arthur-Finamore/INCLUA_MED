@@ -21,11 +21,13 @@ export default class extends Controller {
         this.iconTargets.forEach((icon) => {
           icon.classList.add('hidden')
         })
+        this.arrowTarget.classList.add('hidden')
         console.log("Ícones ocultados")
       }, 200)
 
       // Passo 3: Iniciar animação de redução do menu
       this.menuTarget.classList.add('first-animation')
+
 
       // Passo 4: Remover textos do layout após 0.4s
       setTimeout(() => {
@@ -41,6 +43,8 @@ export default class extends Controller {
           icon.classList.remove('hidden')
           icon.classList.add('reappear')
         })
+        this.arrowTarget.classList.remove('hidden')
+
 
         // Centralizar a seta
         this.arrowTarget.classList.add('center-arrow')
