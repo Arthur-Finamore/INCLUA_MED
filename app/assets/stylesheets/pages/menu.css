@@ -132,8 +132,12 @@ li {
 /* Ícones do Menu */
 .icon {
     width: 20px;
-    transition: margin 1s ease-in-out;
+    transition: width 0.1s ease-in;
 }
+
+.icon.hidden {
+    width: 0;
+  }
 
 .menu.shrunk .icon {
     margin-right: 0;
