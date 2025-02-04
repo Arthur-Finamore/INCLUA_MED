@@ -126,14 +126,6 @@ li {
     color: inherit;
 }
 
-/* Centralizar a seta quando o menu está reduzido */
-.center-arrow {
-    position: absolute;
-    bottom: 40px; /* Ajuste conforme necessário */
-    left: 50%;
-    transform: translateX(-50%);
-}
-
 /* Ícones do Menu */
 .icon {
     width: 20px;
@@ -157,6 +149,7 @@ li {
 
 .menu.icons-visible .icon {
     margin-right: 0;
+    margin-top: 2px;
 }
 
 /* Animação para o reaparecimento dos ícones */
@@ -181,6 +174,20 @@ li {
     margin-bottom: 80px;
     align-self: flex-end;
     cursor: pointer;
+    transition: width 0.1s ease-in, opacity 0.3s ease-in-out;
+}
+
+.arrow-back.hidden {
+    width: 0;
+    opacity: 0;
+}
+
+/* Centralizar a seta quando o menu está reduzido */
+.center-arrow {
+    position: absolute;
+    bottom: 40px; /* Ajuste conforme necessário */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .arrow-height {
