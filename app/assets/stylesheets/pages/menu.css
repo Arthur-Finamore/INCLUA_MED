@@ -11,7 +11,13 @@
     top: 0;
     left: 0;
     z-index: 9999;
+}
 
+.container-menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
 }
 
 .logo-menu {
@@ -25,6 +31,7 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    
 }
 
 li {
@@ -52,4 +59,10 @@ p {
 
 .icon {
     width: 20px;
+}
+
+.arrow-back {
+    width: 25px;
+    margin-bottom: 80px;
+    align-self: end;
 }
