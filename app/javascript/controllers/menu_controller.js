@@ -47,7 +47,7 @@ export default class extends Controller {
         this.arrowTarget.classList.add('arrow-height')
         this.menuTarget.classList.add('icons-visible')
         console.log("Ícones reaparecidos e centralizados, seta centralizada")
-      }, 650)
+      }, 700)
 
       // Passo 6: Remover textos do layout após 0.7s
       setTimeout(() => {
