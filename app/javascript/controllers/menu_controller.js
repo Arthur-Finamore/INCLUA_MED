@@ -1,12 +1,47 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Conecta ao data-controller="menu"
 export default class extends Controller {
   static targets = ["menu", "menuText", "icon", "arrow"]
 
   connect() {
     console.log("Menu controller connected")
-    this.state = 0 // Estado inicial do menu
+    this.state = 0
+    this.setInitialIcon()
+  }
+
+  // Define o ícone inicial com base na rota atual
+  setInitialIcon() {
+    const currentPath = this.element.dataset.currentPath;
+    const pathMappings = {
+      '/instrucoes': 'icon-home-selected.svg',
+      '/procedures': 'icon-procedures-selected.svg',
+      '/opine': 'icon-opine-selected.svg'
+    };
+
+    this.iconTargets.forEach(icon => {
+      const defaultSrc = icon.dataset.iconDefault
+      const selectedSrc = icon.dataset.iconSelected
+      
+      // Verifica se o caminho atual corresponde ao ícone
+      if (selectedSrc.includes(pathMappings[currentPath])) {
+        icon.src = selectedSrc
+      } else {
+        icon.src = defaultSrc
+      }
+    })
+  }
+
+  // Manipula o clique nos itens do menu
+  selectItem(event) {
+    const clickedIcon = event.currentTarget.querySelector('[data-menu-target="icon"]')
+    
+    // Reseta todos os ícones para o estado padrão
+    this.iconTargets.forEach(icon => {
+      icon.src = icon.dataset.iconDefault
+    })
+    
+    // Define o ícone clicado como selecionado
+    clickedIcon.src = clickedIcon.dataset.iconSelected
   }
 
   animateMenu() {

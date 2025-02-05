@@ -129,7 +129,7 @@ li {
 /* Ícones do Menu */
 .icon {
     width: 20px;
-    transition: width 0.1s ease-in, opacity 0.3s ease-in-out;
+    transition: filter 0.3s ease;
     opacity: 1;
 }
 
@@ -198,3 +198,7 @@ li {
 .green {
     color: #98FF98;
 }
+
+.icon:not([src*="-selected.svg"]) {
+    filter: brightness(0.8);
+  }
