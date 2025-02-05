@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["menu", "menuText", "icon", "arrow"]
+  static targets = ["menu", "menuText", "icon", "arrow", "arrowForward"]
 
   connect() {
     console.log("Menu controller connected")
@@ -57,6 +57,8 @@ export default class extends Controller {
           icon.classList.add('hidden')
         })
         this.arrowTarget.classList.add('hidden')
+        this.arrowForwardTarget.classList.add('hidden')
+        
         console.log("Ícones ocultados")
       }, 200)
 
@@ -79,6 +81,8 @@ export default class extends Controller {
           icon.classList.add('reappear')
         })
         this.arrowTarget.classList.remove('hidden')
+        this.arrowForwardTarget.classList.remove('hidden')
+
 
 
         // Centralizar a seta

@@ -48,10 +48,19 @@
           </li>
         </ul>
       </div>
+     
+    <div class="arrow-container">
       <%= image_tag "arrow-back", class: "arrow-back", data: { 
         action: 'click->menu#animateMenu', 
         menu_target: "arrow" 
       } %>
+
+      <%= image_tag "arrow-back", class: "arrow-forward", data: { 
+        action: 'click->menu#animateMenu', 
+        menu_target: "arrowForward" 
+      } %>
+    </div>
+
     </div>
   </div>
 </div>
