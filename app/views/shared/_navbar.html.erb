@@ -4,22 +4,37 @@
       <div class="upper-menu">
         <%= image_tag "logo.png", class: "logo-menu" %>
         <ul>
-          <li>
-            <%= link_to instrucoes_path, class: "links", data: { turbo_frame: "active-screen", "turbo-prefetch": "false" } do %>
-              <%= image_tag "icon-home.svg", class: "icon", data: { menu_target: "icon" } %>
-              <p class="menu-text" data-menu-target="menuText">Início</p>
+          <li class="<%= 'active' if current_page?(instrucoes_path) %>">
+            <% if current_page?(instrucoes_path) %>
+              <%= image_tag "icon-home-selected.svg", class: "icon", data: { menu_target: "icon" } %>
+              <p class="green menu-text" data-menu-target="menuText">Início</p>
+            <% else %>
+              <%= link_to instrucoes_path, class: "links", data: { turbo_frame: "active-screen", "turbo-prefetch": "false" } do %>
+                <%= image_tag "icon-home.svg", class: "icon", data: { menu_target: "icon" } %>
+                <p class="menu-text" data-menu-target="menuText">Início</p>
+              <% end %>
             <% end %>
           </li>
-          <li>
-            <%= link_to procedures_path, class: "links", data: { turbo_frame: "active-screen", "turbo-prefetch": "false" } do %>
-              <%= image_tag "icon-procedures.svg", class: "icon", data: { menu_target: "icon" } %>
-              <p class="menu-text" data-menu-target="menuText">Procedimentos</p>
+          <li class="<%= 'active' if current_page?(procedures_path) %>">
+            <% if current_page?(procedures_path) %>
+              <%= image_tag "icon-procedures-selected.svg", class: "icon", data: { menu_target: "icon" } %>
+              <p class="green menu-text" data-menu-target="menuText">Procedimentos</p>
+            <% else %>
+              <%= link_to procedures_path, class: "links", data: { turbo_frame: "active-screen", "turbo-prefetch": "false" } do %>
+                <%= image_tag "icon-procedures.svg", class: "icon", data: { menu_target: "icon" } %>
+                <p class="menu-text" data-menu-target="menuText">Procedimentos</p>
+              <% end %>
             <% end %>
           </li>
-          <li>
-            <%= link_to opine_path, class: "links", data: { turbo_frame: "active-screen", "turbo-prefetch": "false" } do %>
-              <%= image_tag "icon-opine.svg", class: "icon", data: { menu_target: "icon" } %>
-              <p class="menu-text" data-menu-target="menuText">Dê sua opinião!</p>
+          <li class="<%= 'active' if current_page?(opine_path) %>">
+            <% if current_page?(opine_path) %>
+              <%= image_tag "icon-opine-selected.svg", class: "icon", data: { menu_target: "icon" } %>
+              <p class="green menu-text" data-menu-target="menuText">Dê sua opinião!</p>
+            <% else %>
+              <%= link_to opine_path, class: "links", data: { turbo_frame: "active-screen", "turbo-prefetch": "false" } do %>
+                <%= image_tag "icon-opine.svg", class: "icon", data: { menu_target: "icon" } %>
+                <p class="menu-text" data-menu-target="menuText">Dê sua opinião!</p>
+              <% end %>
             <% end %>
           </li>
         </ul>
