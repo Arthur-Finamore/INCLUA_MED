@@ -7,6 +7,7 @@ export default class extends Controller {
     console.log("Menu controller connected")
     this.state = 0
     this.setInitialIcon()
+    this.arrowForwardTarget.classList.add('hidden')
   }
 
   // Define o ícone inicial com base na rota atual
@@ -56,8 +57,12 @@ export default class extends Controller {
         this.iconTargets.forEach((icon) => {
           icon.classList.add('hidden')
         })
+
+        
         this.arrowTarget.classList.add('hidden')
-        this.arrowForwardTarget.classList.add('hidden')
+
+        setTimeout(() => {this.arrowTarget.classList.add('center-arrow')}, 200)
+        
         
         console.log("Ícones ocultados")
       }, 200)
@@ -120,7 +125,8 @@ export default class extends Controller {
       // Remover a centralização da seta
       this.arrowTarget.classList.remove('center-arrow')
       this.arrowTarget.classList.remove('arrow-height')
-
+      // Esconder a arrow-forward novamente
+      this.arrowForwardTarget.classList.add('hidden')
 
       this.state = 0
     }
