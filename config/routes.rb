@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root "pages#index"
   
   # Pages
+  get "main" => "pages#main"
   get "instrucoes" => "pages#instrucoes"
   get "procedures" => "pages#procedures"
   get "opine" => "pages#opine"

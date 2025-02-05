@@ -4,11 +4,3 @@
     display: flex;
     height: 100vh;
 }
-
-
-
-.active-screen {
-    width: 100vw;
-    background-color: #f7f7f7;
-    position: relative;
-}
