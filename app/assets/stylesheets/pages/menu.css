@@ -33,10 +33,10 @@ body {
 }
 
 .container-menu {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between; 
 }
 
 /* =========================
@@ -143,19 +143,39 @@ li {
   }
 }
 
+/* Nova animação para ocultar o menu */
+.hide-menu {
+  animation: shrink-to-zero 1s forwards;
+}
+
+@keyframes shrink-to-zero {
+  0% {
+    width: 80px;
+  }
+  20% {
+    width: 90px;
+  }
+  100% {
+    width: 0px;
+  }
+}
+
 /* =========================
    Estados Modificados do Menu
 ========================= */
 
-.menu.shrunk li {
+.menu.shrunk li,
+.menu.hide-menu li {
   justify-content: flex-start;
 }
 
-.menu.shrunk .menu-text::after {
+.menu.shrunk .menu-text::after,
+.menu.hide-menu .menu-text::after {
   width: 100%;
 }
 
-.menu.shrunk .arrow-back.center-arrow {
+.menu.shrunk .arrow-back.center-arrow,
+.menu.hide-menu .arrow-back.center-arrow {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -227,9 +247,10 @@ li {
 }
 
 .arrow-forward {
-    transform: rotate(180deg);
-    bottom: 140px;
-    justify-self: anchor-center;
+  transform: rotate(180deg);
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
 }
 
 .arrow-back.hidden,
@@ -241,6 +262,11 @@ li {
   bottom: 40px; /* Ajuste conforme necessário */
   left: 50%;
   transform: translateX(-50%);
+}
+
+/* Ocultar menu completamente */
+.menu.hide-menu {
+  overflow: hidden;
 }
 
 /* =========================
