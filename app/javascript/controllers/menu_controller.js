@@ -71,6 +71,8 @@ export default class extends Controller {
   }
 
   animateMenu(event) {
+    console.log("animateMenu called, state:", this.state, "event.target:", event.target);
+
     if (event.target === this.arrowTarget) { // Clicou na seta para voltar (arrow-back)
       if (this.state === 0) {
         // Primeiro clique na seta quando o menu está expandido
@@ -190,6 +192,7 @@ export default class extends Controller {
         console.log("Resetando menu de estado oculto para expandido via hamburger");
         this.animateReverseMenuToExpandedState();
         this.state = 0;
+        console.log("State after hamburger click:", this.state);
       }
     } else if (event.target === this.arrowForwardTarget) { // Clicou na seta para avançar (arrow-forward)
       if (this.state === 1) {
@@ -313,5 +316,9 @@ export default class extends Controller {
     this.hamburgerIconTarget.classList.add('hidden');
 
     console.log("Menu totalmente resetado para o estado expandido sem animação");
+
+    // Adicionado para corrigir o estado após expansão via hamburger
+    this.state = 0;
+    console.log("State reset to 0 in resetMenuToFullExpandedStateNoAnimation");
   }
 }
