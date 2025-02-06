@@ -1,17 +1,19 @@
 <div data-controller="menu" data-menu-current-path="<%= request.path %>">
+  <%= image_tag "logo-reduzida.svg", class: "logo-reduzida hidden", data: { menu_target: "logoReduzida" } %> <!- -- LOGO REDUZIDA FORA DO MENU - ACIMA -->
+  <div class="logo-reduzida-circle hidden" data-menu-target="logoReduzidaCircle"></div> <!- -- CIRCULO LOGO REDUZIDA FORA DO MENU - ACIMA -->
+
   <div data-menu-target="menu" class="menu">
     <div class="container-menu">
       <div class="upper-menu">
         <%= image_tag "logo.png", class: "logo-menu" %>
-        <%= image_tag "logo-reduzida.svg", class: "logo-reduzida hidden", data: { menu_target: "logoReduzida" } %> <!- -- NOVA IMAGEM ADICIONADA AQUI -- >
         <ul>
           <li>
-            <%= link_to instrucoes_path, class: "links", data: { 
-              turbo_frame: "active-screen", 
+            <%= link_to instrucoes_path, class: "links", data: {
+              turbo_frame: "active-screen",
               "turbo-prefetch": "false",
-              action: "click->menu#selectItem" 
+              action: "click->menu#selectItem"
             } do %>
-              <%= image_tag "icon-home.svg", class: "icon", data: { 
+              <%= image_tag "icon-home.svg", class: "icon", data: {
                 menu_target: "icon",
                 icon_default: asset_path("icon-home.svg"),
                 icon_selected: asset_path("icon-home-selected.svg")
@@ -20,12 +22,12 @@
             <% end %>
           </li>
           <li>
-            <%= link_to procedures_path, class: "links", data: { 
-              turbo_frame: "active-screen", 
+            <%= link_to procedures_path, class: "links", data: {
+              turbo_frame: "active-screen",
               "turbo-prefetch": "false",
-              action: "click->menu#selectItem" 
+              action: "click->menu#selectItem"
             } do %>
-              <%= image_tag "icon-procedures.svg", class: "icon", data: { 
+              <%= image_tag "icon-procedures.svg", class: "icon", data: {
                 menu_target: "icon",
                 icon_default: asset_path("icon-procedures.svg"),
                 icon_selected: asset_path("icon-procedures-selected.svg")
@@ -34,12 +36,12 @@
             <% end %>
           </li>
           <li>
-            <%= link_to opine_path, class: "links", data: { 
-              turbo_frame: "active-screen", 
+            <%= link_to opine_path, class: "links", data: {
+              turbo_frame: "active-screen",
               "turbo-prefetch": "false",
-              action: "click->menu#selectItem" 
+              action: "click->menu#selectItem"
             } do %>
-              <%= image_tag "icon-opine.svg", class: "icon", data: { 
+              <%= image_tag "icon-opine.svg", class: "icon", data: {
                 menu_target: "icon",
                 icon_default: asset_path("icon-opine.svg"),
                 icon_selected: asset_path("icon-opine-selected.svg")
@@ -49,18 +51,18 @@
           </li>
         </ul>
       </div>
-     
-    <div class="arrow-container">
-      <%= image_tag "arrow-back", class: "arrow-back", data: { 
-        action: 'click->menu#animateMenu', 
-        menu_target: "arrow" 
-      } %>
 
-      <%= image_tag "arrow-back", class: "arrow-forward", data: { 
-        action: 'click->menu#animateMenu', 
-        menu_target: "arrowForward" 
-      } %>
-    </div>
+      <div class="arrow-container">
+        <%= image_tag "arrow-back", class: "arrow-back", data: {
+          action: 'click->menu#animateMenu',
+          menu_target: "arrow"
+        } %>
+
+        <%= image_tag "arrow-back", class: "arrow-forward", data: {
+          action: 'click->menu#animateMenu',
+          menu_target: "arrowForward"
+        } %>
+      </div>
 
     </div>
   </div>

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["menu", "menuText", "icon", "arrow", "arrowForward", "hamburgerIcon", "logoReduzida"] // **ADICIONE logoReduzidaTarget**
+  static targets = ["menu", "menuText", "icon", "arrow", "arrowForward", "hamburgerIcon", "logoReduzida", "logoReduzidaCircle"] // **ADICIONE logoReduzidaCircleTarget**
 
   connect() {
     console.log("Menu controller connected");
@@ -118,11 +118,13 @@ export default class extends Controller {
         }, 700);
 
 
-        // **PASSO 7: Mostrar logo-reduzida.svg e iniciar animação pulsante APÓS 1s (duração da clipagem)**
+        // **PASSO 7: Mostrar logo-reduzida.svg e círculo e iniciar animação pulsante APÓS 1s (duração da clipagem)**
         setTimeout(() => {
           this.logoReduzidaTarget.classList.remove('hidden'); // Mostrar logo reduzida
           this.logoReduzidaTarget.classList.add('pulse-animation-logo-reduzida'); // Iniciar animação pulsante
-          console.log("Logo reduzida exibido e animação pulsante iniciada");
+          this.logoReduzidaCircleTarget.classList.remove('hidden'); // **Mostrar círculo logo reduzida**
+          this.logoReduzidaCircleTarget.classList.add('pulse-animation-logo-reduzida'); // **Iniciar animação pulsante no círculo TAMBÉM - LINHA ADICIONADA**
+          console.log("Logo reduzida e círculo exibidos, animação pulsante iniciada");
         }, 1000); // 1000ms = 1s (Duração da animação de clipagem)
 
 
@@ -235,9 +237,11 @@ export default class extends Controller {
       const logoMenu = this.element.querySelector('.logo-menu');
       logoMenu.classList.remove('clipped-logo');
 
-      // **PASSO 6: Ocultar logo-reduzida.svg ao re-expandir o menu**
+      // **PASSO 6: Ocultar logo-reduzida.svg e círculo ao re-expandir o menu**
       this.logoReduzidaTarget.classList.add('hidden');
       this.logoReduzidaTarget.classList.remove('pulse-animation-logo-reduzida');
+      this.logoReduzidaCircleTarget.classList.add('hidden'); // **Ocultar círculo logo reduzida**
+      this.logoReduzidaCircleTarget.classList.remove('pulse-animation-logo-reduzida'); // **Remover animação pulsante do círculo - LINHA ADICIONADA**
 
 
       console.log("Menu resetado para estado expandido final");
@@ -254,9 +258,11 @@ export default class extends Controller {
     const logoMenu = this.element.querySelector('.logo-menu');
     logoMenu.classList.remove('clipped-logo');
 
-    // **PASSO 6: Ocultar logo-reduzida.svg ao resetar para estado expandido**
+    // **PASSO 6: Ocultar logo-reduzida.svg e círculo ao resetar para estado expandido**
     this.logoReduzidaTarget.classList.add('hidden');
     this.logoReduzidaTarget.classList.remove('pulse-animation-logo-reduzida');
+    this.logoReduzidaCircleTarget.classList.add('hidden'); // **Ocultar círculo logo reduzida**
+    this.logoReduzidaCircleTarget.classList.remove('pulse-animation-logo-reduzida'); // **Remover animação pulsante do círculo - LINHA ADICIONADA**
 
 
     this.iconTargets.forEach((icon) => {

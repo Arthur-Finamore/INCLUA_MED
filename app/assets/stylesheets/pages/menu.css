@@ -18,6 +18,10 @@ body {
    Layout Principal
 ========================= */
 
+[data-controller="menu"] {
+  position: relative; /* Adicionado para posicionamento correto dos logos reduzidos */
+}
+
 .menu {
   width: 250px;
   height: 100vh;
@@ -36,7 +40,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
 /* =========================
@@ -78,6 +82,7 @@ body {
   position: absolute;
   left: 31px;
   top: 52px;
+  z-index: 10000; /* Garante que fique acima do menu */
 }
 
 
@@ -98,6 +103,20 @@ body {
 
 .pulse-animation-logo-reduzida {
   animation: pulse-logo-reduzida .4s ease-in-out forwards; /* Aplica a animação pulsante */
+}
+
+/* =========================
+   Estilos Círculo Logo Reduzida
+========================= */
+.logo-reduzida-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #592580;
+  position: absolute;
+  left: -33px;
+  top: 25px;
+  z-index: 999; /* Garante que fique atrás do logo reduzido e acima do menu */
 }
 
 /* =========================
@@ -229,7 +248,7 @@ li {
   0% {
     width: 0px; /* Começa com largura 0 */
   }
-  
+
   100% {
     width: 250px; /* Expande até 250px */
   }
