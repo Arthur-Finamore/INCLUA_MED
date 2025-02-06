@@ -177,9 +177,6 @@ export default class extends Controller {
 
     setTimeout(() => { this.arrowForwardTarget.classList.add('hidden'); }, 200);// Oculta arrow-forward no início da animação reversa
 
-    // Passo 1: Animação de redução inicial (70px)
-    this.menuTarget.classList.add('reverse-shrink-animation');
-
     // Passo 2: Ocultar ícones e seta após 0.2s (tempo da animação reverse-shrink)
     setTimeout(() => {
       this.iconTargets.forEach((icon) => {
@@ -199,7 +196,6 @@ export default class extends Controller {
 
     // Passo 3: Iniciar animação de expansão para 260px após a redução inicial
     setTimeout(() => {
-      this.menuTarget.classList.remove('reverse-shrink-animation'); // Remove a animação de redução para não interferir
       this.menuTarget.classList.add('reverse-expand-animation');
       console.log("Iniciando animação de expansão reversa para 260px");
 
@@ -207,14 +203,13 @@ export default class extends Controller {
       setTimeout(() => {
         this.iconTargets.forEach((icon) => {
           icon.classList.remove('hidden');
-          setTimeout(() => { icon.classList.add('reappear');}, 200);
-        });
-        setTimeout(() => {this.arrowTarget.classList.remove('hidden');}, 400);
-        this.menuTextTargets.forEach((text) => {
-          setTimeout(() => { text.classList.remove('hide-text');}, 200); // ANIMAÇÃO DE DESMASCARAMENTO DOS TEXTOS
+          setTimeout(() => { icon.classList.add('reappear');}, 0); });
+          setTimeout(() => {this.arrowTarget.classList.remove('hidden');}, 400);
+          this.menuTextTargets.forEach((text) => {
+          setTimeout(() => { text.classList.remove('hide-text');}, 700); // ANIMAÇÃO DE DESMASCARAMENTO DOS TEXTOS
         });
         console.log("Ícones, seta e textos reaparecendo/animando durante a expansão reversa");
-      }, 700); // Inicia o reaparecimento/animação 0.1s após o início da expansão (total 0.3s após clique)
+      }, 600); // Inicia o reaparecimento/animação 0.1s após o início da expansão (total 0.3s após clique)
 
     }, 200); // Inicia a expansão após 0.2s da redução inicial (total 0.4s após clique)
 
