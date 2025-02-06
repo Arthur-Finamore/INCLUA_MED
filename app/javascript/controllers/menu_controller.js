@@ -125,7 +125,7 @@ export default class extends Controller {
           this.logoReduzidaCircleTarget.classList.remove('hidden'); // **Mostrar círculo logo reduzida**
           this.logoReduzidaCircleTarget.classList.add('pulse-animation-logo-reduzida'); // **Iniciar animação pulsante no círculo TAMBÉM - LINHA ADICIONADA**
           console.log("Logo reduzida e círculo exibidos, animação pulsante iniciada");
-        }, 1000); // 1000ms = 1s (Duração da animação de clipagem)
+        }, 900); // 1000ms = 1s (Duração da animação de clipagem)
 
 
         this.state = 1;
@@ -192,7 +192,21 @@ export default class extends Controller {
 
     setTimeout(() => { this.arrowForwardTarget.classList.add('hidden'); }, 200);// Oculta arrow-forward no início da animação reversa
 
-    // Passo 2: Ocultar ícones e seta após 0.2s (tempo da animação reverse-shrink)
+    // **PASSO 1 (MODIFICADO): Iniciar animações de fade-out e shrink**
+    this.logoReduzidaTarget.classList.add('fade-out-logo-reduzida-animation'); // Inicia fade-out do logo reduzida
+    this.logoReduzidaCircleTarget.classList.add('shrink-circle-logo-reduzida-animation'); // Inicia shrink do círculo
+    console.log("Iniciadas animações de fade-out da logo reduzida e shrink do círculo");
+
+
+    // Passo 2 (MODIFICADO): Ocultar logo-reduzida e círculo após as animações (0.4s, tempo da animação shrink do círculo)
+    setTimeout(() => {
+      this.logoReduzidaTarget.classList.add('hidden'); // Oculta logo reduzida APÓS fade-out
+      this.logoReduzidaCircleTarget.classList.add('hidden'); // Oculta círculo APÓS shrink
+      console.log("Logo reduzida e círculo ocultados após animações reversas");
+    }, 400); // 0.4s = Tempo da animação shrink-circle-logo-reduzida, após ela terminar esconde os elementos.  <-- CHAVE DE FECHAMENTO ADICIONADA AQUI
+
+
+    // Passo 3: Ocultar ícones e seta após 0.2s (tempo da animação reverse-shrink)
     setTimeout(() => {
       this.iconTargets.forEach((icon) => {
         icon.classList.add('hidden');
@@ -209,39 +223,46 @@ export default class extends Controller {
     console.log("Textos readicionados ao layout IMEDIATAMENTE");
 
 
-    // Passo 3: Iniciar animação de expansão para 260px após a redução inicial
+    // Passo 4: Iniciar animação de expansão para 260px após a redução inicial
     setTimeout(() => {
+        // **PASSO 4.1 (MODIFICADO):  Aplicar animação de desclipagem e remover classe clipped-logo**
+        const logoMenu = this.element.querySelector('.logo-menu');
+        logoMenu.classList.remove('clipped-logo'); // REMOVER classe clipped-logo para permitir a desclipagem
+        logoMenu.classList.add('unclipped-logo-animation'); // ADICIONAR classe unclipped-logo-animation para reverter o clip
+        console.log("Classe clipped-logo removida e unclipped-logo-animation adicionada ao logo.png");
+
+
       this.menuTarget.classList.add('reverse-expand-animation');
       console.log("Iniciando animação de expansão reversa para 260px");
 
-      // Passo 4: Reaparecer ícones e seta durante a expansão (ou logo após o início) e ANIMAR TEXTOS
+      // Passo 5: Reaparecer ícones e seta durante a expansão (ou logo após o início) e ANIMAR TEXTOS
       setTimeout(() => {
         this.iconTargets.forEach((icon) => {
           icon.classList.remove('hidden');
           setTimeout(() => { icon.classList.add('reappear');}, 0); });
-          setTimeout(() => {this.arrowTarget.classList.remove('hidden');}, 400);
-          this.menuTextTargets.forEach((text) => {
+        setTimeout(() => {this.arrowTarget.classList.remove('hidden');}, 400);
+        this.menuTextTargets.forEach((text) => {
           setTimeout(() => { text.classList.remove('hide-text');}, 700); // ANIMAÇÃO DE DESMASCARAMENTO DOS TEXTOS
         });
         console.log("Ícones, seta e textos reaparecendo/animando durante a expansão reversa");
       }, 600); // Inicia o reaparecimento/animação 0.1s após o início da expansão (total 0.3s após clique)
 
-    }, 200); // Inicia a expansão após 0.2s da redução inicial (total 0.4s após clique)
+    }, 400); // 0.4s = Tempo da animação shrink-circle-logo-reduzida, após ela terminar esconde os elementos.
 
-
-    // Passo 5: Resetar menu para estado expandido original após a animação de expansão terminar (0.6s de reverse-expand + delays)
+    // Passo 6: Resetar menu para estado expandido original após a animação de expansão terminar (0.6s de reverse-expand + delays)
     setTimeout(() => {
       this.resetMenuToFullExpandedStateNoAnimation(); // Chama resetMenuToFullExpandedStateNoAnimation para resetar o menu completamente
 
-      // **LINHA PARA REMOVER A CLIPAGEM DO LOGO AO RE-EXPANDIR**
+      // **LINHA PARA REMOVER A ANIMAÇÃO DE DESCLIPAGEM AO RE-EXPANDIR COMPLETAMENTE (manter clipagem padrão)**
       const logoMenu = this.element.querySelector('.logo-menu');
-      logoMenu.classList.remove('clipped-logo');
+      logoMenu.classList.remove('unclipped-logo-animation'); // REMOVE a classe de animação de desclipagem
+      logoMenu.classList.add('clipped-logo'); // RE-ADICIONA a classe clipped-logo para clipagem padrão no estado expandido inicial
 
-      // **PASSO 6: Ocultar logo-reduzida.svg e círculo ao re-expandir o menu**
+      // **PASSO 7: Ocultar logo-reduzida.svg e círculo ao re-expandir o menu**
       this.logoReduzidaTarget.classList.add('hidden');
-      this.logoReduzidaTarget.classList.remove('pulse-animation-logo-reduzida');
+      this.logoReduzidaTarget.classList.remove('pulse-animation-logo-reduzida', 'fade-out-logo-reduzida-animation'); // REMOVER CLASSES DE ANIMAÇÃO REVERSA
       this.logoReduzidaCircleTarget.classList.add('hidden'); // **Ocultar círculo logo reduzida**
-      this.logoReduzidaCircleTarget.classList.remove('pulse-animation-logo-reduzida'); // **Remover animação pulsante do círculo - LINHA ADICIONADA**
+      this.logoReduzidaCircleTarget.classList.remove('pulse-animation-logo-reduzida', 'shrink-circle-logo-reduzida-animation'); // REMOVER CLASSES DE ANIMAÇÃO REVERSA
 
 
       console.log("Menu resetado para estado expandido final");
@@ -257,6 +278,8 @@ export default class extends Controller {
     // **LINHA PARA REMOVER A CLIPAGEM DO LOGO NO RESET**
     const logoMenu = this.element.querySelector('.logo-menu');
     logoMenu.classList.remove('clipped-logo');
+    logoMenu.classList.remove('unclipped-logo-animation'); // **REMOVER TAMBÉM A CLASSE unclipped-logo-animation NO RESET**
+
 
     // **PASSO 6: Ocultar logo-reduzida.svg e círculo ao resetar para estado expandido**
     this.logoReduzidaTarget.classList.add('hidden');
