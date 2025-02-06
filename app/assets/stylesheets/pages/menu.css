@@ -49,6 +49,19 @@ body {
 }
 
 /* =========================
+   Ícone Menu Hamburger
+========================= */
+.menu-hamburger {
+  width: 40px; /* Ajuste o tamanho conforme necessário */
+  height: auto;
+  cursor: pointer;
+  position: absolute; /* Posicionamento absoluto para colocar onde desejar */
+  top: 20px; /* Ajuste a posição vertical */
+  left: 20px; /* Ajuste a posição horizontal */
+  z-index: 10000; /* Garante que está acima de tudo */
+}
+
+/* =========================
    Lista de Itens do Menu
 ========================= */
 
@@ -158,6 +171,51 @@ li {
   100% {
     width: 0px;
   }
+}
+
+/* Animação de expansão para o menu hamburger (de 0px a 250px) */
+@keyframes reverse-expand-menu-hamburger {
+  0% {
+    width: 0px; /* Começa com largura 0 */
+  }
+  100% {
+    width: 250px; /* Expande até 250px */
+  }
+}
+
+.reverse-expand-animation-hamburger {
+  animation: reverse-expand-menu-hamburger 0.6s forwards;
+}
+
+/* =========================
+   Novas Animações Reversas
+========================= */
+
+@keyframes reverse-shrink-menu {
+  0% {
+    width: 80px;
+  }
+  100% {
+    width: 70px;
+  }
+}
+
+.reverse-shrink-animation {
+  animation: reverse-shrink-menu 0.2s forwards;
+}
+
+
+@keyframes reverse-expand-menu {
+  0% {
+    width: 70px;
+  }
+  100% {
+    width: 250px;
+  }
+}
+
+.reverse-expand-animation {
+  animation: reverse-expand-menu 0.6s forwards;
 }
 
 /* =========================
