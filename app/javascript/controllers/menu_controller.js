@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["menu", "menuText", "icon", "arrow", "arrowForward", "hamburgerIcon"]
+  static targets = ["menu", "menuText", "icon", "arrow", "arrowForward", "hamburgerIcon", "logoReduzida"] // **ADICIONE logoReduzidaTarget**
 
   connect() {
     console.log("Menu controller connected");
@@ -69,6 +69,10 @@ export default class extends Controller {
         // Passo 1: Animação da máscara
         this.menuTarget.classList.add('shrunk');
 
+        // **LINHA PARA APLICAR A CLIPAGEM DO LOGO (JÁ INCLUI TRANSLATE)**
+        const logoMenu = this.element.querySelector('.logo-menu');
+        logoMenu.classList.add('clipped-logo');
+
         // Passo 2: Ocultar ícones e seta após 0.2s
         setTimeout(() => {
           this.iconTargets.forEach((icon) => {
@@ -112,6 +116,15 @@ export default class extends Controller {
           });
           console.log("Textos removidos do layout");
         }, 700);
+
+
+        // **PASSO 7: Mostrar logo-reduzida.svg e iniciar animação pulsante APÓS 1s (duração da clipagem)**
+        setTimeout(() => {
+          this.logoReduzidaTarget.classList.remove('hidden'); // Mostrar logo reduzida
+          this.logoReduzidaTarget.classList.add('pulse-animation-logo-reduzida'); // Iniciar animação pulsante
+          console.log("Logo reduzida exibido e animação pulsante iniciada");
+        }, 1000); // 1000ms = 1s (Duração da animação de clipagem)
+
 
         this.state = 1;
 
@@ -216,7 +229,17 @@ export default class extends Controller {
 
     // Passo 5: Resetar menu para estado expandido original após a animação de expansão terminar (0.6s de reverse-expand + delays)
     setTimeout(() => {
-      this.resetMenuToFullExpandedStateNoAnimation();
+      this.resetMenuToFullExpandedStateNoAnimation(); // Chama resetMenuToFullExpandedStateNoAnimation para resetar o menu completamente
+
+      // **LINHA PARA REMOVER A CLIPAGEM DO LOGO AO RE-EXPANDIR**
+      const logoMenu = this.element.querySelector('.logo-menu');
+      logoMenu.classList.remove('clipped-logo');
+
+      // **PASSO 6: Ocultar logo-reduzida.svg ao re-expandir o menu**
+      this.logoReduzidaTarget.classList.add('hidden');
+      this.logoReduzidaTarget.classList.remove('pulse-animation-logo-reduzida');
+
+
       console.log("Menu resetado para estado expandido final");
     }, 800); // 0.8s = 0.2s (shrink) + 0.6s (expand) - Tempo total aproximado da animação reversa
   }
@@ -226,6 +249,15 @@ export default class extends Controller {
     this.menuTarget.classList.remove('first-animation', 'shrunk', 'icons-visible', 'hide-menu', 'reverse-shrink-animation', 'reverse-expand-animation');
     this.menuTarget.style.width = '250px';
     this.menuTarget.style.visibility = 'visible';
+
+    // **LINHA PARA REMOVER A CLIPAGEM DO LOGO NO RESET**
+    const logoMenu = this.element.querySelector('.logo-menu');
+    logoMenu.classList.remove('clipped-logo');
+
+    // **PASSO 6: Ocultar logo-reduzida.svg ao resetar para estado expandido**
+    this.logoReduzidaTarget.classList.add('hidden');
+    this.logoReduzidaTarget.classList.remove('pulse-animation-logo-reduzida');
+
 
     this.iconTargets.forEach((icon) => {
       icon.classList.remove('hidden');

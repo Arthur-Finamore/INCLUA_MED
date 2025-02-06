@@ -49,6 +49,58 @@ body {
 }
 
 /* =========================
+   Animação de Clipagem do Logo
+========================= */
+
+@keyframes clip-logo {
+  from {
+    clip-path: inset(0 0 0 0); /* Início: logo inteiro visível */
+    transform: translateX(0px); /* Início: sem translação horizontal */
+  }
+  to {
+    clip-path: inset(0 calc(100% - 12px) 0 0); /* Fim: clipa da direita, deixando 12px visíveis à esquerda */
+    transform: translateX(69px); /* Fim: move 34px para a direita */
+  }
+}
+
+.clipped-logo {
+  animation: clip-logo 1s forwards; /* Aplica a animação de clipagem */
+  overflow: hidden; /* Garante que o conteúdo clipado fique oculto */
+  display: inline-block; /* Necessário para clip-path funcionar corretamente em alguns casos */
+}
+
+/* =========================
+   Estilos Logo Reduzida
+========================= */
+.logo-reduzida {
+  width: 53px;
+  height: auto;
+  position: absolute;
+  left: 31px;
+  top: 52px;
+}
+
+
+/* =========================
+   Animação Pulsante Logo Reduzida
+========================= */
+@keyframes pulse-logo-reduzida {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1); /* Expande ligeiramente */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse-animation-logo-reduzida {
+  animation: pulse-logo-reduzida .4s ease-in-out forwards; /* Aplica a animação pulsante */
+}
+
+/* =========================
    Ícone Menu Hamburger
 ========================= */
 .menu-hamburger {
