@@ -1,10 +1,32 @@
 
+.page {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
 
 .active-screen {
 
-    background-color: rgb(255, 255, 255);
-    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    height: 100vh;
+
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 60, 0);
     color: black;
     margin-left: 250px;
+}
+
+.active-screen-default {
+    width: calc(100% - 250px);
+}
+
+.active-screen-bigger {
+    width: calc(100% - 80px);
+}
+
+.active-screen-fullscreen {
+    width: 100%;
 }
