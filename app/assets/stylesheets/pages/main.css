@@ -1,6 +1,18 @@
 .main {
-    background-color: red;
-    width: 300px;
-    height: 300px;
+    width: 545.4px;
+    height: 484.96px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 38px;
+}
 
+.main .comece {
+    font-size: 48px;
+    color: #592580;
+}
+
+.main p {
+    text-align: center;
+    font-size: 28px;
 }

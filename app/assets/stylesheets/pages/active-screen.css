@@ -12,9 +12,7 @@
     width: 100%;
     height: 100vh;
     background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(255, 60, 0);
     color: black;
-    /* margin-left: 250px;  Remova isso daqui */
 }
 
 .active-screen-default {
