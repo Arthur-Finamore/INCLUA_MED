@@ -6,27 +6,32 @@
 }
 
 .active-screen {
-
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
-
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(255, 60, 0);
     color: black;
-    margin-left: 250px;
+    /* margin-left: 250px;  Remova isso daqui */
 }
 
 .active-screen-default {
     width: calc(100% - 250px);
+    margin-left: 250px; /* Adicione margin-left aqui */
+    transition: width 1s ease, margin-left 1s ease; /* suavizando width e margin-left */
 }
 
 .active-screen-bigger {
     width: calc(100% - 80px);
+    margin-left: 80px; /* Adicione margin-left aqui */
+    transition: width 1s ease, margin-left 1s ease; /* suavizando width e margin-left */
 }
 
 .active-screen-fullscreen {
     width: 100%;
+    margin-left: 0px; /* Adicione margin-left aqui */
+    transition: width 1s ease, margin-left 1s ease; /* suavizando width e margin-left */
 }
+

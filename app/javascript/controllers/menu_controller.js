@@ -44,6 +44,17 @@ export default class extends Controller {
     });
   }
 
+
+  updateActiveScreenClass(oldClass, newClass) {
+    const activeScreen = document.getElementById('active-screen');
+    if (activeScreen) {
+      activeScreen.classList.replace(oldClass, newClass);
+    }
+  }
+
+
+
+
   // Manipula o clique nos itens do menu
   selectItem(event) {
     // Remove a classe 'green' de todos os textos do menu
@@ -72,11 +83,13 @@ export default class extends Controller {
 
   animateMenu(event) {
     console.log("animateMenu called, state:", this.state, "event.target:", event.target);
+    const activeScreen = document.getElementById('active-screen');
 
     if (event.target === this.arrowTarget) { // Clicou na seta para voltar (arrow-back)
       if (this.state === 0) {
         // Primeiro clique na seta quando o menu está expandido
         console.log("Iniciando animação do menu para estado reduzido");
+        this.updateActiveScreenClass('active-screen-default', 'active-screen-bigger');
 
         // Passo 1: Animação da máscara
         this.menuTarget.classList.add('shrunk');
@@ -143,6 +156,7 @@ export default class extends Controller {
       } else if (this.state === 1) {
         // Segundo clique na seta quando o menu está reduzido
         console.log("Iniciando animação do menu para ocultar completamente");
+        this.updateActiveScreenClass('active-screen-bigger', 'active-screen-fullscreen');
 
         // **NOVO CÓDIGO: Iniciar animações de fade-out e shrink da logo reduzida e círculo**
         this.logoReduzidaTarget.classList.add('fade-out-logo-reduzida-animation');
@@ -210,6 +224,14 @@ export default class extends Controller {
 
   animateReverseMenuToExpandedState() {
     console.log("Iniciando animação reversa do menu para estado expandido");
+
+    if (this.state === 2) {
+      // Expandindo de estado oculto
+      this.updateActiveScreenClass('active-screen-fullscreen', 'active-screen-default');
+    } else if (this.state === 1) {
+      // Expandindo de estado reduzido
+      this.updateActiveScreenClass('active-screen-bigger', 'active-screen-default');
+    }
 
     // Ocultar arrow-forward imediatamente
     this.arrowForwardTarget.classList.add('hidden');
@@ -280,6 +302,16 @@ export default class extends Controller {
   }
 
   resetMenuToFullExpandedStateNoAnimation() {
+    const activeScreen = document.getElementById('active-screen')
+
+    if (activeScreen) {
+      activeScreen.classList.remove(
+        'active-screen-bigger',
+        'active-screen-fullscreen'
+      );
+      activeScreen.classList.add('active-screen-default');
+    }
+
     this.menuTarget.classList.remove(
       'first-animation',
       'shrunk',
