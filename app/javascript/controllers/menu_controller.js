@@ -149,7 +149,7 @@ export default class extends Controller {
           this.logoReduzidaCircleTarget.classList.remove('hidden'); // Mostrar círculo
           this.logoReduzidaCircleTarget.classList.add('pulse-animation-logo-reduzida'); // Iniciar animação pulsante no círculo
           console.log("Logo reduzida e círculo exibidos, animação pulsante iniciada");
-        }, 900);
+        }, 700);
 
         this.state = 1;
 
@@ -212,6 +212,7 @@ export default class extends Controller {
       if (this.state === 1) {
         // Animação reversa de estado reduzido para expandido
         this.animateReverseMenuToExpandedState();
+        this.arrowForwardTarget.classList.add('display-block');
         this.state = 0;
       } else if (this.state === 2) {
         // Se estiver completamente oculto, resetar para o estado inicial expandido
@@ -234,7 +235,7 @@ export default class extends Controller {
     }
 
     // Ocultar arrow-forward imediatamente
-    this.arrowForwardTarget.classList.add('hidden');
+    setTimeout(() => { this.arrowForwardTarget.classList.add('hidden');}, 200);
 
     // Iniciar animações de fade-out e shrink
     this.logoReduzidaTarget.classList.add('fade-out-logo-reduzida-animation');

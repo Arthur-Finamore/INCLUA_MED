@@ -97,7 +97,7 @@ body {
   width: 53px;
   height: auto;
   position: absolute;
-  left: 31px;
+  left: 31.5px;
   top: 52px;
   z-index: 10000; /* Garante que fique acima do menu */
 }
@@ -465,6 +465,10 @@ li {
 
 .arrow-forward.hidden {
   display: none;
+}
+
+.display-block {
+  display: block;
 }
 
 /* Encerra o arquivo CSS otimizado */
