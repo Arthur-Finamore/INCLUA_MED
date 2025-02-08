@@ -12,7 +12,18 @@
     color: #592580;
 }
 
+
 .main p {
     text-align: center;
     font-size: 28px;
+}
+
+.main .opine_h {
+    font-size: 24px;
+    width: 580px;
+}
+
+.main .opine_p {
+    font-size: 20px;
+    width: 580px;
 }
