@@ -324,11 +324,9 @@ li {
     width: 70px;
     /* Tentativa de manter o logo parado: */
     /* Compensar a translação horizontal da clipagem */
-    transform: translateX(-69px); /* Inicia com translação negativa para compensar */
   }
   100% {
     width: 250px;
-    transform: translateX(0px); /* Volta para a posição normal no final */
   }
 }
 
