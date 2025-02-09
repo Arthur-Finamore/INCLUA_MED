@@ -466,3 +466,8 @@ li {
 }
 
 /* Encerra o arquivo CSS otimizado */
+
+/* Garante alinhamento à esquerda das li no estado expandido */
+.menu:not(.shrunk):not(.hide-menu):not(.icons-visible) li {
+  justify-content: flex-start;
+}

@@ -264,8 +264,11 @@ export default class extends Controller {
     });
     console.log("Textos do menu readicionados ao layout");
 
+    // **Remover a classe .icons-visible ANTES do setTimeout**
+    this.menuTarget.classList.remove('icons-visible');
+
     // Iniciar animação de expansão após 0.4s
-    setTimeout(() => {
+   
       // Aplicar animação de desclipagem e remover classe clipped-logo
       const logoMenu = this.element.querySelector('.logo-menu');
       logoMenu.classList.remove('clipped-logo');
@@ -291,15 +294,16 @@ export default class extends Controller {
           icon.classList.remove('hidden');
           icon.classList.add('reappear');
         });
+      }, 200);
         setTimeout(() => {
           this.arrowTarget.classList.remove('hidden');
-        }, 400);
+        }, 600);
         this.menuTextTargets.forEach((text) => {
           text.classList.remove('hide-text');
         });
         console.log("Ícones, seta e textos reaparecendo durante a expansão reversa");
-      }, 600);
-    }, 400);
+      
+    
   }
 
   resetMenuToFullExpandedStateNoAnimation() {
