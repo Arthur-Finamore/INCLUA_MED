@@ -27,7 +27,6 @@ export default class extends Controller {
         document.exitFullscreen();
       }
     });
-
   }
 
   // Define o ícone inicial com base na rota atual
