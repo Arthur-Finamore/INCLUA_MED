@@ -20,6 +20,14 @@ export default class extends Controller {
     this.setInitialIcon();
     this.arrowForwardTarget.classList.add('hidden');
     this.hamburgerIconTarget.classList.add('hidden'); // Garante que o hamburger começa escondido
+
+    document.addEventListener("dblclick", () =>{
+      document.documentElement.requestFullscreen().catch((e) => {console.log(e);})
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+    });
+
   }
 
   // Define o ícone inicial com base na rota atual
