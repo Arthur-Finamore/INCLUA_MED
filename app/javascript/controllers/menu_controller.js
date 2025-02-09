@@ -149,7 +149,7 @@ export default class extends Controller {
           this.logoReduzidaCircleTarget.classList.remove('hidden'); // Mostrar círculo
           this.logoReduzidaCircleTarget.classList.add('pulse-animation-logo-reduzida'); // Iniciar animação pulsante no círculo
           console.log("Logo reduzida e círculo exibidos, animação pulsante iniciada");
-        }, 700);
+        }, 850);
 
         this.state = 1;
 

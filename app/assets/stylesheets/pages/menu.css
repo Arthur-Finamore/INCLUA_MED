@@ -245,10 +245,6 @@ li {
   }
 }
 
-.icon:not([src*="-selected.svg"]) {
-  filter: brightness(0.8);
-}
-
 /* =========================
    Animações e Transições
 ========================= */
