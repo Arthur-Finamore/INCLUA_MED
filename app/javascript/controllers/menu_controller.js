@@ -21,12 +21,17 @@ export default class extends Controller {
     this.arrowForwardTarget.classList.add('hidden');
     this.hamburgerIconTarget.classList.add('hidden'); // Garante que o hamburger começa escondido
 
-    document.addEventListener("dblclick", () =>{
+    // **Novo código: Seleciona o elemento da imagem pelo ID**
+    const fullscreenButton = document.getElementById('fullscreen-button');
+
+    // **Novo código: Adiciona o event listener de 'click' À IMAGEM**
+    fullscreenButton.addEventListener("click", () =>{
       document.documentElement.requestFullscreen().catch((e) => {console.log(e);})
       if (document.fullscreenElement) {
         document.exitFullscreen();
       }
     });
+
   }
 
   // Define o ícone inicial com base na rota atual

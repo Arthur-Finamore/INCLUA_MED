@@ -1,5 +1,10 @@
 <div class="page">
   <%= render 'shared/navbar' %>
+
+  <div class="mini-circle">
+    <%= image_tag "fullscreen.svg", alt: "Tela Cheia", id: "fullscreen-button" %>
+  </div>
+  
   <turbo-frame class="active-screen-default" id="active-screen">
     <div class="active-screen">
 
