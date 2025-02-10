@@ -64,6 +64,21 @@ export default class extends Controller {
 
   // Manipula o clique nos itens do menu
   selectItem(event) {
+
+
+  setTimeout(() => {
+      if (this.state === 1) {
+        console.log("selectItem: Menu está reduzido (state === 1), forçando active-screen-bigger");
+        // Força a troca da classe para active-screen-bigger
+        this.updateActiveScreenClass('active-screen-default', 'active-screen-bigger');
+      } else {
+        // Se o menu não estiver reduzido (estado expandido ou outro estado),
+        // garante que a classe seja active-screen-default (para o caso de ter sido alterada em outro momento)
+        console.log("selectItem: Menu NÃO está reduzido (state != 1), garantindo active-screen-default");
+        this.updateActiveScreenClass('active-screen-bigger', 'active-screen-default');
+      }
+    }, 200);
+
     // Remove a classe 'green' de todos os textos do menu
     this.menuTextTargets.forEach(text => {
       text.classList.remove('green');
