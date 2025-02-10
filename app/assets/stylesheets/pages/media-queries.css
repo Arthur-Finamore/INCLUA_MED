@@ -1,0 +1,90 @@
+@media (max-width: 1100px) {
+    .upper-menu ul {
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+        /* MENU*/
+
+    .upper-menu ul {
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .upper-menu .logo-menu {
+        width: 150px;
+        margin: 40px 0 10px 0;
+    }
+
+    .arrow-container .arrow-forward {
+        transform: rotate(180deg);
+        bottom: 90px;
+        left: 50%;
+        transform: translateX(-50%) rotate(180deg);
+    }
+
+    /**/
+    
+    .main {
+        width: 300px;
+        height: 275px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .main .comece {
+        font-size: 28px;
+        color: #592580;
+    }
+    
+    .main .opine_h {
+        font-size: 20px;
+        width: 300px;
+    }
+    
+    .main .opine_p {
+        font-size: 10px;
+        width: 300px;
+    }
+    
+    input#opiniao {
+        width: 300px;
+        height: 75px;
+        border: 2px solid #592580;
+        margin-bottom: 40px;
+    }
+    
+    button {
+        width: 300px;
+        height: 35px;
+        border: 2px solid #592580;
+        color: white;
+        background-color: #592580;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .arrow-container .arrow-forward {
+        transform: rotate(180deg);
+        bottom: 55px;
+        left: 50%;
+        transform: translateX(-50%) rotate(180deg);
+    }
+
+}
