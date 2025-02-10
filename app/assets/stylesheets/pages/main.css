@@ -41,7 +41,7 @@
     top: 53px; 
 }
 
-#fullscreen-button {
+.seta-fullscreen {
     width: 14px;
     position: absolute;
     right: 3px;
