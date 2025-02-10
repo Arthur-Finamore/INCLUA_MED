@@ -14,6 +14,11 @@
 
         /* MENU*/
 
+    .main p {
+        text-align: center;
+        font-size: 14px;
+    }
+
     .upper-menu ul {
         color: #fff;
         display: flex;
@@ -76,6 +81,7 @@
         background-color: #592580;
     }
 
+
 }
 
 @media (max-width: 700px) {
@@ -85,6 +91,15 @@
         bottom: 55px;
         left: 50%;
         transform: translateX(-50%) rotate(180deg);
+    }
+
+    img.arrow-forward {
+        width: 20px;
+    }
+
+    img.arrow-back {
+        width: 20px;
+        top: 73px;
     }
 
 }

@@ -170,8 +170,8 @@ body {
   height: auto;
   cursor: pointer;
   position: absolute; /* Posicionamento absoluto para colocar onde desejar */
-  top: 20px; /* Ajuste a posição vertical */
-  left: 20px; /* Ajuste a posição horizontal */
+  top: 80px;
+  left: 50px;
 }
 
 /* =========================
