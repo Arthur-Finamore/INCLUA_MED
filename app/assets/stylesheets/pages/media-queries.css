@@ -170,3 +170,30 @@
     }
 
 }
+
+@media (max-width: 450px) {
+
+    div.menu {    
+    	width: 180px;
+    }
+
+    .menu:not(.shrunk):not(.hide-menu):not(.icons-visible) li {
+        justify-content: flex-start;
+        font-size: 14px;
+    }
+
+    .icon {
+        width: 18px;
+    }
+
+    .upper-menu .logo-menu {
+        width: 130px;
+        margin: 38px 0 54px 7px;
+    }
+
+    div#fullscreen-button.mini-circle {
+        width: 20px;
+        top: 82px;
+        right: 16px;
+    }
+}

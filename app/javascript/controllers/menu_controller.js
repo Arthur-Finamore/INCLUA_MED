@@ -82,7 +82,7 @@ export default class extends Controller {
         console.log("selectItem: Menu NÃO está reduzido (state != 1), garantindo active-screen-default");
         this.updateActiveScreenClass('active-screen-bigger', 'active-screen-default');
       }
-    }, 200);
+    }, 400);
 
     // Remove a classe 'green' de todos os textos do menu
     this.menuTextTargets.forEach(text => {
