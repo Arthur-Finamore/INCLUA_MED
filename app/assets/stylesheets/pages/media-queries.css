@@ -196,4 +196,8 @@
         top: 82px;
         right: 16px;
     }
+
+    div.logo-reduzida-circle {
+        left: -59px;
+    }
 }

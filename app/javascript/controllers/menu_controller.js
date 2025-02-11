@@ -32,6 +32,36 @@ export default class extends Controller {
       }
     });
 
+    this.sizeChecker();
+    this.menuStarter();
+
+    window.addEventListener('resize', () => {
+      if (this.sizeChecker()) {
+        this.menuTarget.style.width = "180px"
+      } else {
+        this.menuTarget.style.width = "250px"
+      }
+
+    });
+  }
+
+  // FIM DO CONNECT
+
+  // *********************************
+
+  //INICIO DAS FUNÇÕES
+
+
+  sizeChecker() {
+    return window.innerWidth <= 450; // Retorna true se a tela for menor ou igual a 450px, false caso contrário
+  }
+
+  menuStarter() {
+    if (this.sizeChecker()) {
+      this.menuTarget.style.width = "180px"
+    } else {
+      this.menuTarget.style.width = "250px"
+    }
   }
 
   // Define o ícone inicial com base na rota atual
@@ -132,10 +162,15 @@ export default class extends Controller {
           });
           this.arrowTarget.classList.add('hidden');
           console.log("Ícones e seta ocultados");
-        }, 200);
+          }, 200);
 
         // Passo 3: Iniciar animação de redução do menu
-        this.menuTarget.classList.add('first-animation');
+
+          if (this.sizeChecker()) {
+            this.menuTarget.classList.add('first-animation-vertical');
+          } else {
+            this.menuTarget.classList.add('first-animation');            
+          }
 
         // Passo 4: Ocultar textos do menu após 0.4s
         setTimeout(() => {
@@ -200,8 +235,12 @@ export default class extends Controller {
         // **FIM DO NOVO CÓDIGO**
 
         // Passo 1: Iniciar animação de ocultação total do menu
-        this.menuTarget.classList.add('hide-menu');
+        if (this.sizeChecker()){
+          this.menuTarget.classList.add('hide-menu-vertical');
+        } else {
+          this.menuTarget.classList.add('hide-menu');
 
+        }
         // Passo 2: Ocultar ícones e setas imediatamente
         this.iconTargets.forEach((icon) => {
           icon.classList.add('hidden');
@@ -223,6 +262,13 @@ export default class extends Controller {
       } else if (this.state === 2) {
         // Clique para redefinir o menu para o estado inicial
         console.log("Resetando menu para estado expandido e exibindo hamburger");
+        
+        if (this.sizeChecker()) {
+          this.menuTarget.classList.add('reverse-expand-animation-hamburger-vertical');
+        } else {
+          this.menuTarget.classList.add('reverse-expand-animation-hamburger');
+          
+        }
 
         // Ocultar setas completamente
         this.arrowTarget.classList.add('hidden');
@@ -312,7 +358,15 @@ export default class extends Controller {
 
       logoMenu.addEventListener('animationend', onAnimationEnd);
 
-      this.menuTarget.classList.add('reverse-expand-animation');
+
+      if (this.sizeChecker()) {
+        this.menuTarget.classList.add('reverse-expand-animation-vertical');
+      } else {
+        this.menuTarget.classList.add('reverse-expand-animation');
+        
+      }
+
+      
       console.log("Iniciando animação de expansão reversa para 250px");
 
       // Reaparecer ícones e seta durante a expansão
@@ -346,13 +400,23 @@ export default class extends Controller {
 
     this.menuTarget.classList.remove(
       'first-animation',
+      'first-animation-vertical',
       'shrunk',
       'icons-visible',
       'hide-menu',
+      'hide-menu-vertical',
       'reverse-shrink-animation',
-      'reverse-expand-animation'
+      'reverse-shrink-animation-vertical',
+      'reverse-expand-animation',
+      'reverse-expand-animation-vertical'
     );
-    this.menuTarget.style.width = '250px';
+
+    if (this.sizeChecker()) {
+      this.menuTarget.style.width = '180px';
+    } else {
+      this.menuTarget.style.width = '250px';            
+    }
+    
     this.menuTarget.style.visibility = 'visible';
 
     // Não manipular as classes do logo aqui, pois já foram ajustadas após a animação

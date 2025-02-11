@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=YouTube Downloader GUI
+Comment=Baixa vídeos do YouTube usando yt-dlp
+Exec=python /caminho/completo/para/youtube_downloader_gui.py
+Icon=/caminho/completo/para/seu_icone.png
+Terminal=false
+Type=Application
+Categories=Graphics;Network;
