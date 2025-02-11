@@ -8,6 +8,7 @@ gem 'rails-html-sanitizer', '~> 1.6'
 gem 'activesupport', '7.1.5.1'
 gem "font-awesome-sass", "~> 4.7"
 gem 'sass-rails', '~> 6.0'
+gem 'devise'
 
 
 
