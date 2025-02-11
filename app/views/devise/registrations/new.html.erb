@@ -1,0 +1,83 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :'Nome da Clinica/Médico' %><br />
+      <%= f.text_field :clinic_doctor %>
+    </div>
+
+    <div class="field">
+    <%= f.label :user_type, "Tipo de Usuário" %><br />
+    <%= f.select :user_type, options_for_select([["Pessoa Física (CPF)", "cpf"], ["Pessoa Jurídica (CNPJ)", "cnpj"]]), {}, id: "user_type_select" %>
+  </div>
+
+  <div id="cpf_field" class="field" style="display: none;">
+    <%= f.label :cpf, "CPF" %><br />
+    <%= f.text_field :cpf %>
+  </div>
+
+  <div id="cnpj_field" class="field" style="display: none;">
+    <%= f.label :cnpj, "CNPJ" %><br />
+    <%= f.text_field :cnpj %>
+  </div>
+
+  <div class="field">
+    <%= f.label :'Nome do Responsavel' %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :'Telefone' %><br />
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const userTypeSelect = document.getElementById("user_type_select");
+    const cpfField = document.getElementById("cpf_field");
+    const cnpjField = document.getElementById("cnpj_field");
+
+    userTypeSelect.addEventListener("change", function() {
+      if (this.value === "cpf") {
+        cpfField.style.display = "block";
+        cnpjField.style.display = "none";
+      } else if (this.value === "cnpj") {
+        cpfField.style.display = "none";
+        cnpjField.style.display = "block";
+      } else {
+        cpfField.style.display = "none";
+        cnpjField.style.display = "none";
+      }
+    });
+
+    // Dispara o evento change ao carregar a página
+    userTypeSelect.dispatchEvent(new Event("change"));
+  });
+</script>
