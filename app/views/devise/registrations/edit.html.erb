@@ -4,6 +4,38 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :'Nome da Clinica/Médico' %><br />
+    <%= f.text_field :clinic_doctor %>
+  </div>
+
+    <div class="field">
+    <%= f.label :user_type, "Tipo de Usuário" %><br />
+    <%= f.select :user_type, options_for_select([["Pessoa Física (CPF)", "cpf"], ["Pessoa Jurídica (CNPJ)", "cnpj"]], resource.user_type), {}, id: "user_type_select", disabled: true %>
+  </div>
+
+  <% if resource.user_type == "cpf" %>
+    <div id="cpf_field" class="field">
+      <%= f.label :cpf, "CPF" %><br />
+      <%= f.text_field :cpf, disabled: true %>
+    </div>
+  <% else %>
+    <div id="cnpj_field" class="field">
+      <%= f.label :cnpj, "CNPJ" %><br />
+      <%= f.text_field :cnpj, disabled: true %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :'Nome do Responsavel' %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :'Telefone' %><br />
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
@@ -29,6 +61,9 @@
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
+        <% if resource.errors[:current_password].any? %>
+      <p class="error-message" style="color: red;">A senha atual é obrigatória para editar os dados.</p>
+    <% end %>
   </div>
 
   <div class="actions">
