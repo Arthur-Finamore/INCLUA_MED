@@ -229,7 +229,7 @@
 
 }
 
-@media (max-width: 375px) {
+@media (max-width: 376px) {
 
     div.menu {    
     	width: 180px;
@@ -261,28 +261,38 @@
 
     .active-screen-default {
         width: calc(100% - 250px);
-        margin-left: 218px;
+        margin-left: 214px;
         transition: width 1s ease, margin-left 1s ease;
     }
 
     .main .comece {
         width: 201px;
-        font-size: 24px;
+        font-size: 22px;
         color: #592580;
         text-align: center;
     }
 
-    .main .opine_p {
-        font-size: 10px;
-        width: 220px;
+    .main p {
+        font-size: 14px;
+        width: 181px;
     }
 
+    .main .opine_p {
+        font-size: 10px;
+        width: 160px;
+    }
+
+    .main .opine_h {
+        font-size: 14px;
+    }
+
+
     input#opiniao {
-        width: 200px;
+        width: 170px;
     }
 
     button {
-        width: 200px;
+        width: 170px;
     }
 
 }
