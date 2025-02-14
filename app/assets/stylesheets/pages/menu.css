@@ -265,12 +265,44 @@ li {
   }
 }
 
+.first-animation-vertical {
+  animation: expand-shrink-vertical 1s forwards;
+}
+
+@keyframes expand-shrink-vertical {
+  0% {
+    width: 180px;
+  }
+  20% {
+    width: 190px;
+  }
+  100% {
+    width: 48px;
+  }
+}
+
 /* Nova animação para ocultar o menu */
 .hide-menu {
   animation: shrink-to-zero 1s forwards;
 }
 
 @keyframes shrink-to-zero {
+  0% {
+    width: 80px;
+  }
+  20% {
+    width: 90px;
+  }
+  100% {
+    width: 0px;
+  }
+}
+
+.hide-menu-vertical {
+  animation: shrink-to-zero-vertical 1s forwards;
+}
+
+@keyframes shrink-to-zero-vertical {
   0% {
     width: 80px;
   }
@@ -297,6 +329,20 @@ li {
   animation: reverse-expand-menu-hamburger 0.6s forwards;
 }
 
+@keyframes reverse-expand-menu-hamburger-vertical {
+  0% {
+    width: 0px; /* Começa com largura 0 */
+  }
+
+  100% {
+    width: 180px; /* Expande até 250px */
+  }
+}
+
+.reverse-expand-animation-hamburger-vertical {
+  animation: reverse-expand-menu-hamburger-vertical 0.6s forwards;
+}
+
 /* =========================
    Novas Animações Reversas
 ========================= */
@@ -310,9 +356,36 @@ li {
   }
 }
 
+
+
+
+
 .reverse-shrink-animation {
   animation: reverse-shrink-menu 0.2s forwards;
 }
+
+
+
+
+
+@keyframes reverse-shrink-menu-vertical {
+  0% {
+    width: 80px;
+  }
+  100% {
+    width: 70px;
+  }
+}
+
+.reverse-shrink-animation-vertical {
+  animation: reverse-shrink-menu-vertical 0.2s forwards;
+}
+
+
+
+
+
+
 
 
 @keyframes reverse-expand-menu {
@@ -326,9 +399,30 @@ li {
   }
 }
 
+
 .reverse-expand-animation {
   animation: reverse-expand-menu 0.6s forwards;
 }
+
+
+
+@keyframes reverse-expand-menu-vertical {
+  0% {
+    width: 38px;
+    /* Tentativa de manter o logo parado: */
+    /* Compensar a translação horizontal da clipagem */
+  }
+  100% {
+    width: 180px;
+  }
+}
+
+
+.reverse-expand-animation-vertical {
+  animation: reverse-expand-menu-vertical 0.6s forwards;
+}
+
+
 
 /* =========================
    Estados Modificados do Menu
