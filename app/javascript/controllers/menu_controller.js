@@ -34,6 +34,7 @@ export default class extends Controller {
 
     this.sizeChecker();
     this.menuStarter();
+    this.menuMobileStarter();
 
     window.addEventListener('resize', () => {
       if (this.sizeChecker()) {
@@ -54,6 +55,22 @@ export default class extends Controller {
 
   sizeChecker() {
     return window.innerWidth <= 450; // Retorna true se a tela for menor ou igual a 450px, false caso contrário
+  }
+
+  menuMobileStarter() {
+    if (this.sizeChecker()) {
+      this.state = 2;
+      this.menuTarget.classList.add(this.sizeChecker() ? 'hide-menu-vertical' : 'hide-menu');
+      this.iconTargets.forEach(icon => icon.classList.add('hidden'));
+      this.arrowTarget.classList.add('hidden');
+      this.arrowForwardTarget.classList.add('hidden');
+      this.hamburgerIconTarget.classList.add('icon');
+      this.hamburgerIconTarget.classList.remove('hidden');
+      this.updateActiveScreenClass('active-screen-default', 'active-screen-fullscreen');
+      this.menuTextTargets.forEach(text => text.classList.add('hide-text-hidden'));
+      this.logoReduzidaTarget.classList.add('hidden');
+      this.logoReduzidaCircleTarget.classList.add('hidden');
+    }
   }
 
   menuStarter() {
