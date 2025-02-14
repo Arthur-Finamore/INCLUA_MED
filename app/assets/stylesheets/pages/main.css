@@ -27,3 +27,23 @@
     font-size: 20px;
     width: 580px;
 }
+
+.mini-circle {
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: #592580;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 53px;
+    top: 53px; 
+}
+
+.seta-fullscreen {
+    width: 14px;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}

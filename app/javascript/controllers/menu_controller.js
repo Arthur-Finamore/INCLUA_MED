@@ -20,6 +20,18 @@ export default class extends Controller {
     this.setInitialIcon();
     this.arrowForwardTarget.classList.add('hidden');
     this.hamburgerIconTarget.classList.add('hidden'); // Garante que o hamburger começa escondido
+
+    // **Novo código: Seleciona o elemento da imagem pelo ID**
+    const fullscreenButton = document.getElementById('fullscreen-button');
+
+    // **Novo código: Adiciona o event listener de 'click' À IMAGEM**
+    fullscreenButton.addEventListener("click", () =>{
+      document.documentElement.requestFullscreen().catch((e) => {console.log(e);})
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+    });
+
   }
 
   // Define o ícone inicial com base na rota atual
@@ -57,6 +69,21 @@ export default class extends Controller {
 
   // Manipula o clique nos itens do menu
   selectItem(event) {
+
+
+  setTimeout(() => {
+      if (this.state === 1) {
+        console.log("selectItem: Menu está reduzido (state === 1), forçando active-screen-bigger");
+        // Força a troca da classe para active-screen-bigger
+        this.updateActiveScreenClass('active-screen-default', 'active-screen-bigger');
+      } else {
+        // Se o menu não estiver reduzido (estado expandido ou outro estado),
+        // garante que a classe seja active-screen-default (para o caso de ter sido alterada em outro momento)
+        console.log("selectItem: Menu NÃO está reduzido (state != 1), garantindo active-screen-default");
+        this.updateActiveScreenClass('active-screen-bigger', 'active-screen-default');
+      }
+    }, 400);
+
     // Remove a classe 'green' de todos os textos do menu
     this.menuTextTargets.forEach(text => {
       text.classList.remove('green');
@@ -149,7 +176,7 @@ export default class extends Controller {
           this.logoReduzidaCircleTarget.classList.remove('hidden'); // Mostrar círculo
           this.logoReduzidaCircleTarget.classList.add('pulse-animation-logo-reduzida'); // Iniciar animação pulsante no círculo
           console.log("Logo reduzida e círculo exibidos, animação pulsante iniciada");
-        }, 900);
+        }, 850);
 
         this.state = 1;
 
@@ -212,6 +239,7 @@ export default class extends Controller {
       if (this.state === 1) {
         // Animação reversa de estado reduzido para expandido
         this.animateReverseMenuToExpandedState();
+        this.arrowForwardTarget.classList.add('display-block');
         this.state = 0;
       } else if (this.state === 2) {
         // Se estiver completamente oculto, resetar para o estado inicial expandido
@@ -234,7 +262,7 @@ export default class extends Controller {
     }
 
     // Ocultar arrow-forward imediatamente
-    this.arrowForwardTarget.classList.add('hidden');
+    setTimeout(() => { this.arrowForwardTarget.classList.add('hidden');}, 200);
 
     // Iniciar animações de fade-out e shrink
     this.logoReduzidaTarget.classList.add('fade-out-logo-reduzida-animation');
@@ -263,8 +291,11 @@ export default class extends Controller {
     });
     console.log("Textos do menu readicionados ao layout");
 
+    // **Remover a classe .icons-visible ANTES do setTimeout**
+    this.menuTarget.classList.remove('icons-visible');
+
     // Iniciar animação de expansão após 0.4s
-    setTimeout(() => {
+   
       // Aplicar animação de desclipagem e remover classe clipped-logo
       const logoMenu = this.element.querySelector('.logo-menu');
       logoMenu.classList.remove('clipped-logo');
@@ -290,15 +321,16 @@ export default class extends Controller {
           icon.classList.remove('hidden');
           icon.classList.add('reappear');
         });
+      }, 200);
         setTimeout(() => {
           this.arrowTarget.classList.remove('hidden');
-        }, 400);
+        }, 600);
         this.menuTextTargets.forEach((text) => {
           text.classList.remove('hide-text');
         });
         console.log("Ícones, seta e textos reaparecendo durante a expansão reversa");
-      }, 600);
-    }, 400);
+      
+    
   }
 
   resetMenuToFullExpandedStateNoAnimation() {
