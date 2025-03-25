@@ -10,4 +10,7 @@ class User < ApplicationRecord
   validates :clinic_doctor, presence: true
   validates :phone, presence: true
   validates :name, presence: true
+
+  has_many :user_exams
+  has_many :exams, through: :user_exams
 end
