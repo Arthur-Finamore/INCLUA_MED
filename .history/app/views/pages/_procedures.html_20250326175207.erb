@@ -1,0 +1,52 @@
+<turbo-frame class="active-screen-default" id="active-screen">
+  <div class="active-screen">
+    <div class="main">
+      <h1 class="comece"> Procedimentos</h1>
+      <p> Escolha o procedimento desejado: </p>
+      <div class="procedures-bg"> 
+        <div class="procedure-item">
+          <%= link_to image_tag("exames/apresentacao.png", alt: "Apresentação", class: "procedures"), procedures_apresentacao_path, remote: true %>
+          <p class="procedure-title">Apresentação</p>
+        </div>
+        <div class="procedure-item">
+          <%= link_to image_tag("exames/pre-exame.png", alt: "Pré-exame", class: "procedures"), procedures_pre_exame_path, remote: true %>
+          <p class="procedure-title">Pré-exame</p>
+        </div>
+        <div class="procedure-item">
+          <%= link_to image_tag("exames/acuidade.png", alt: "Acuidade", class: "procedures"), procedures_acuidade_path, remote: true %>
+          <p class="procedure-title">Acuidade visual</p>
+        </div>
+        <div class="procedure-item">
+          <%= link_to image_tag("exames/biomicroscopia.png", alt: "Biomicroscopia", class: "procedures"), procedures_biomicroscopia_path, remote: true %>
+          <p class="procedure-title">Biomicroscopia</p>
+        </div>
+        <div class="procedure-item">
+          <%= link_to image_tag("exames/refracao.png", alt: "Refração", class: "procedures"), procedures_refracao_path, remote: true %>
+          <p class="procedure-title">Exame de Refração</p>
+        </div>
+        <div class="procedure-item">
+          <%= link_to image_tag("exames/tonometria.png", alt: "Tonometria", class: "procedures"), procedures_tonometria_path, remote: true %>
+          <p class="procedure-title">Tonometria</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</turbo-frame>
+
+<style>
+  .procedure-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; /* Black */
+    font-size: 17px;
+    color: #592580;
+    width: 155px;
+    height: 31px;
+    text-align: center;
+    word-wrap: break-word;
+    margin: 5px auto 0; /* Center the title below the image */
+  }
+  .procedure-item {
+    text-align: center;
+    margin-bottom: 20px; /* Add spacing between items */
+  }
+</style>

@@ -1,0 +1,17 @@
+<turbo-frame class="active-screen-default" id="active-screen">
+  <div class="active-screen">
+    
+      <div class="main">
+
+        <h1 class="comece"> Apresentação </h1>
+        <p> Primeiro contato e anamnese </p>
+
+        <%= youtube_embed("OTzYZ26Ilzw") %>
+
+        <%= link_to procedures_path, remote: true do %>
+          <%= image_tag "purple-arrow-back", class: "purple-arrow-back" %>
+        <% end %>        
+      
+      </div>
+  </div>
+</turbo-frame>

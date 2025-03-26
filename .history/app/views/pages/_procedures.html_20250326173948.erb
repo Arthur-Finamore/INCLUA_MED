@@ -1,0 +1,16 @@
+<turbo-frame class="active-screen-default" id="active-screen">
+  <div class="active-screen">
+    <div class="main">
+      <h1 class="comece"> Procedimentos</h1>
+      <p> Escolha o procedimento desejado: </p>
+      <div class="procedures-bg"> 
+        <%= link_to image_tag("exames/apresentacao.png", alt: "Apresentação", class: "procedures"), procedures_apresentacao_path, remote: true %>
+        <%= link_to image_tag("exames/pre-exame.png", alt: "Pré-exame", class: "procedures"), procedures_pre_exame_path, remote: true %>
+        <%= link_to image_tag("exames/acuidade.png", alt: "Acuidade", class: "procedures"), procedures_acuidade_path, remote: true %>
+        <%= link_to image_tag("exames/biomicroscopia.png", alt: "Biomicroscopia", class: "procedures"), procedures_biomicroscopia_path, remote: true %>
+        <%= link_to image_tag("exames/refracao.png", alt: "Refração", class: "procedures"), procedures_refracao_path, remote: true %>
+        <%= link_to image_tag("exames/tonometria.png", alt: "Tonometria", class: "procedures"), procedures_tonometria_path, remote: true %>
+      </div>
+    </div>
+  </div>
+</turbo-frame>
