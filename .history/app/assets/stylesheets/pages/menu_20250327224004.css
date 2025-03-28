@@ -1,0 +1,355 @@
+/* =========================
+   Variáveis e Mixins
+========================= */
+:root {
+  --menu-width: 250px;
+  --menu-width-shrunk: 80px;
+  --menu-bg-color: #592580;
+  --text-color: #fff;
+  --transition-time: 0.3s;
+}
+
+/* =========================
+   Estilos Globais
+========================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  
+  .hidden {
+    display: none;
+  }
+}
+
+/* =========================
+   Layout do Menu Principal
+========================= */
+[data-controller="menu"] {
+  position: relative;
+}
+
+.menu {
+  width: var(--menu-width);
+  height: 100vh;
+  background-color: var(--menu-bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  overflow: hidden;
+
+  &.shrunk, &.hide-menu {
+    li {
+      justify-content: flex-start;
+      
+      .menu-text::after {
+        width: 100%;
+      }
+      
+      .arrow-back.center-arrow {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+  
+  &.icons-visible {
+    ul {
+      align-items: center;
+    }
+    
+    li {
+      justify-content: center;
+      align-items: center;
+      
+      .icon {
+        margin-right: 0;
+        margin-top: 2px;
+      }
+    }
+  }
+  
+  &.hide-menu {
+    overflow: hidden;
+  }
+}
+
+.container-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+/* =========================
+   Logo do Menu
+========================= */
+.logo-menu {
+  width: 150px;
+  margin: 40px 0;
+}
+
+/* =========================
+   Logo Reduzida e Animação
+========================= */
+.logo-reduzida {
+  width: 53px;
+  height: auto;
+  position: absolute;
+  left: 31.5px;
+  top: 52px;
+  z-index: 10000;
+  
+  &.pulse-animation-logo-reduzida {
+    animation: pulse-logo-reduzida .8s ease-in-out forwards;
+  }
+  
+  &.fade-out-logo-reduzida-animation {
+    animation: fade-out-logo-reduzida 0.2s forwards;
+  }
+}
+
+.logo-reduzida-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: var(--menu-bg-color);
+  position: absolute;
+  left: -33px;
+  top: 25px;
+  z-index: 999;
+  
+  &.shrink-circle-logo-reduzida-animation {
+    animation: shrink-circle-logo-reduzida 0.8s forwards;
+  }
+}
+
+/* =========================
+   Itens do Menu
+========================= */
+ul {
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  list-style: none;
+  font-size: 16px;
+  font-weight: 800;
+  position: relative;
+  transition: opacity var(--transition-time) ease-in-out;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.menu-text {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  color: var(--text-color);
+  transition: opacity var(--transition-time) ease-out, height var(--transition-time) ease-out;
+  opacity: 1;
+  height: auto;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0%;
+    height: 100%;
+    background-color: var(--menu-bg-color);
+    transition: width 0.2s ease-in-out;
+    z-index: 1;
+  }
+  
+  &.hide-text {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    
+    &.hide-text-hidden {
+      display: none;
+    }
+  }
+}
+
+/* =========================
+   Ícones
+========================= */
+.icon {
+  width: 20px;
+  transition: filter var(--transition-time) ease, opacity var(--transition-time) ease;
+  opacity: 1;
+  
+  &.hidden {
+    opacity: 0;
+  }
+  
+  &.reappear {
+    animation: icon-reappear 0.3s forwards;
+  }
+}
+
+/* =========================
+   Menu Hamburger
+========================= */
+.menu-hamburger {
+  width: 40px;
+  height: auto;
+  cursor: pointer;
+  position: absolute;
+  top: 80px;
+  left: 50px;
+}
+
+/* =========================
+   Componentes de Seta
+========================= */
+.arrow-container {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+
+.arrow-back, .arrow-forward {
+  position: absolute;
+  cursor: pointer;
+  transition: all var(--transition-time) ease;
+  width: 24px;
+  height: 24px;
+  
+  &.hidden {
+    display: none;
+  }
+}
+
+.arrow-back {
+  top: 80px;
+  right: 0px;
+  
+  &.center-arrow {
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.arrow-forward {
+  transform: rotate(180deg);
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+/* =========================
+   Classes Utilitárias
+========================= */
+.green {
+  color: #98FF98;
+}
+
+.display-block {
+  display: block;
+}
+
+/* =========================
+   Animações
+========================= */
+@keyframes clip-logo {
+  from {
+    clip-path: inset(0 0 0 0);
+    transform: translateX(0px);
+  }
+  to {
+    clip-path: inset(0 calc(100% - 12px) 0 0);
+    transform: translateX(69px);
+  }
+}
+
+@keyframes reverse-clip-logo {
+  from {
+    clip-path: inset(0 calc(100% - 12px) 0 0);
+    transform: translateX(69px);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: translateX(0px);
+  }
+}
+
+@keyframes pulse-logo-reduzida {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fade-out-logo-reduzida {
+  to { opacity: 0; }
+}
+
+@keyframes shrink-circle-logo-reduzida {
+  to { transform: scale(0); }
+}
+
+@keyframes icon-reappear {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes expand-shrink {
+  0% { width: var(--menu-width); }
+  20% { width: calc(var(--menu-width) + 10px); }
+  100% { width: var(--menu-width-shrunk); }
+}
+
+@keyframes expand-shrink-vertical {
+  0% { width: 180px; }
+  20% { width: 190px; }
+  100% { width: 48px; }
+}
+
+@keyframes shrink-to-zero {
+  0% { width: var(--menu-width-shrunk); }
+  20% { width: 90px; }
+  100% { width: 0px; }
+}
+
+@keyframes reverse-expand-menu-hamburger {
+  0% { width: 0px; }
+  100% { width: var(--menu-width); }
+}
+
+@keyframes reverse-shrink-menu {
+  0% { width: var(--menu-width-shrunk); }
+  100% { width: 70px; }
+}
+
+@keyframes reverse-expand-menu {
+  0% { width: 70px; }
+  100% { width: var(--menu-width); }
+}

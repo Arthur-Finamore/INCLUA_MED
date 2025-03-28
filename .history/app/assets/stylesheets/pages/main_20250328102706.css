@@ -1,0 +1,56 @@
+.main {
+    width: 545.4px;
+    height: 484.96px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 38px;
+}
+
+.main .comece {
+    font-size: 48px;
+    color: #592580;
+}
+
+
+.main p {
+    text-align: center;
+    font-size: 28px;
+}
+
+.main .opine_h {
+    font-size: 24px;
+    width: 580px;
+}
+
+.main .opine_p {
+    font-size: 20px;
+    width: 580px;
+}
+
+.mini-circle {
+    width: 31px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #592580;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 53px;
+    top: 53px; 
+}
+
+.seta-fullscreen {
+    width: 14px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+
+.close {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+}

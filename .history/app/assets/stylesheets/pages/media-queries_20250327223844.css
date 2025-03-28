@@ -1,0 +1,302 @@
+/* =========================
+   Variáveis de Breakpoint
+========================= */
+:root {
+  --bp-xl: 1260px;
+  --bp-lg: 950px;
+  --bp-md: 850px;
+  --bp-sm: 700px;
+  --bp-xs: 640px;
+  --bp-xxs: 500px;
+  --bp-mobile: 450px;
+  --bp-tiny: 376px;
+}
+
+/* =========================
+   Player de Vídeo Responsivo
+========================= */
+.youtube-player {
+  iframe {
+    @media (max-width: var(--bp-xl)) {
+      width: 550px;
+      height: 331.6px;
+    }
+    
+    @media (max-width: var(--bp-lg)) {
+      width: 450px;
+      height: 271.3px;
+    }
+    
+    @media (max-width: 800px) {
+      width: 300px;
+      height: 180.9px;
+    }
+    
+    @media (max-width: var(--bp-xs)) {
+      width: 200px;
+      height: 120.6px;
+    }
+    
+    @media (max-width: var(--bp-xxs)) {
+      width: 100px;
+      height: 60.3px;
+    }
+  }
+}
+
+/* =========================
+   Layout Principal Responsivo
+========================= */
+.main {
+  @media (max-width: var(--bp-lg)) {
+    width: 300px;
+    height: 275px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+    
+    p {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    
+    .comece {
+      font-size: 28px;
+      color: #592580;
+    }
+    
+    .opine_h {
+      font-size: 20px;
+      width: 300px;
+    }
+    
+    .opine_p {
+      font-size: 10px;
+      width: 300px;
+    }
+    
+    #opiniao {
+      width: 300px;
+      height: 75px;
+      border: 2px solid #592580;
+      margin-bottom: 40px;
+    }
+    
+    button {
+      width: 300px;
+      height: 35px;
+      border: 2px solid #592580;
+      color: white;
+      background-color: #592580;
+    }
+  }
+  
+  @media (max-width: var(--bp-xs)) {
+    .comece {
+      font-size: 22px;
+    }
+    
+    p {
+      font-size: 12px;
+      width: 180px;
+    }
+  }
+  
+  @media (max-width: var(--bp-mobile)) {
+    .comece {
+      width: 201px;
+      font-size: 24px;
+      text-align: center;
+    }
+    
+    .opine_p {
+      width: 220px;
+    }
+    
+    #opiniao {
+      width: 200px;
+    }
+    
+    button {
+      width: 200px;
+    }
+  }
+  
+  @media (max-width: var(--bp-tiny)) {
+    .comece {
+      font-size: 22px;
+      width: 201px;
+    }
+    
+    p {
+      font-size: 14px;
+      width: 181px;
+    }
+    
+    .opine_p {
+      width: 160px;
+    }
+    
+    .opine_h {
+      font-size: 14px;
+    }
+    
+    #opiniao {
+      width: 170px;
+    }
+    
+    button {
+      width: 170px;
+    }
+  }
+}
+
+/* =========================
+   Menu Superior Responsivo
+========================= */
+.upper-menu {
+  @media (max-width: var(--bp-lg)) {
+    ul {
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .logo-menu {
+      width: 150px;
+      margin: 40px 0 10px 0;
+    }
+  }
+  
+  @media (max-width: var(--bp-mobile)) {
+    .logo-menu {
+      width: 130px;
+      margin: 38px 0 54px 7px;
+    }
+  }
+}
+
+/* =========================
+   Componentes de Seta Responsivos
+========================= */
+.arrow-container {
+  @media (max-width: var(--bp-lg)) {
+    margin-top: 20px;
+    
+    .arrow-forward {
+      transform: translateX(-50%) rotate(180deg);
+      bottom: 90px;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    margin-top: 0px;
+  }
+  
+  @media (max-width: var(--bp-md)) {
+    .arrow-forward {
+      bottom: 70px;
+    }
+  }
+  
+  @media (max-width: var(--bp-sm)) {
+    .arrow-forward {
+      bottom: 55px;
+    }
+    
+    img.arrow-forward, img.arrow-back {
+      width: 20px;
+    }
+    
+    img.arrow-back {
+      top: 73px;
+    }
+  }
+}
+
+/* =========================
+   Menu Lateral Responsivo
+========================= */
+.menu {
+  @media (max-width: var(--bp-mobile)) {
+    width: 180px;
+    
+    &:not(.shrunk):not(.hide-menu):not(.icons-visible) li {
+      justify-content: flex-start;
+      font-size: 14px;
+    }
+    
+    .icon {
+      width: 18px;
+    }
+  }
+}
+
+/* =========================
+   Componentes Circulares
+========================= */
+.mini-circle {
+  @media (max-width: var(--bp-lg)) {
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: #592580;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 24px;
+    top: 76px;
+  }
+  
+  @media (max-width: var(--bp-md)) {
+    right: 24px;
+    top: 65px;
+  }
+  
+  @media (max-width: var(--bp-sm)) {
+    right: 14px;
+    top: 56px;
+  }
+  
+  @media (max-width: var(--bp-mobile)) {
+    width: 20px;
+    top: 82px;
+    right: 16px;
+  }
+}
+
+#fullscreen-button {
+  @media (max-width: var(--bp-sm)) {
+    width: 14px;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+  }
+}
+
+/* =========================
+   Layout de Tela Ativa
+========================= */
+.active-screen-default {
+  @media (max-width: var(--bp-mobile)) {
+    width: calc(100% - 250px);
+    margin-left: 218px;
+    transition: width 1s ease, margin-left 1s ease;
+  }
+  
+  @media (max-width: var(--bp-tiny)) {
+    margin-left: 214px;
+  }
+}
+
+.logo-reduzida-circle {
+  @media (max-width: var(--bp-mobile)) {
+    left: -59px;
+  }
+}
