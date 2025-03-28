@@ -166,7 +166,7 @@ li {
   transition: opacity var(--transition-time) ease-out, height var(--transition-time) ease-out;
   opacity: 1;
   height: auto;
-  font-size: 20px;
+  font-size: ;
 }
 
 .menu-text::after {
@@ -195,7 +195,7 @@ li {
    Ícones
 ========================= */
 .icon {
-  width: 24px;
+  width: 20px;
   transition: filter var(--transition-time) ease, opacity var(--transition-time) ease;
   opacity: 1;
 }

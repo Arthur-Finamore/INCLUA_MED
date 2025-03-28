@@ -224,24 +224,19 @@
       justify-content: flex-start;
       font-size: 14px;
     }
-
-    .menu-text {
-      font-size: 16px !important;
-    }
-
+    
     .icon {
-      width: 18px !important;
+      width: 18px;
     }
-
   }
-
+  
   /* =========================
      Componentes Circulares
   ========================= */
   @media (max-width: 950px) {
     .mini-circle {
       width: 31px;
-      height: 30px;
+      height: 01px;
       border-radius: 50%;
       background-color: #592580;
       display: flex;
@@ -249,27 +244,25 @@
       justify-content: center;
       position: absolute;
       right: 53px;
-      top: 52px;
+      top: 76px;
     }
   }
   
   @media (max-width: 850px) {
     .mini-circle {
       right: 53px;
-      top: 52px;
+      top: 65px;
     }
   }
   
   @media (max-width: 700px) {
     .mini-circle {
-      width: 31px;
-      height: 30px;
       right: 53px;
-      top: 52px;
+      top: 56px;
     }
     
     #fullscreen-button {
-      width: 31px;
+      width: 14px;
       position: absolute;
       right: 53px;
       top: 56px;

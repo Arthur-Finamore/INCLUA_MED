@@ -224,17 +224,22 @@
       justify-content: flex-start;
       font-size: 14px;
     }
-
-    .menu-text {
-      font-size: 16px !important;
-    }
-
+    
     .icon {
-      width: 18px !important;
+      width: 18px;
     }
-
   }
 
+  @media (max-width: 375px) {
+    .icon {
+      width: 18px;
+    }
+
+    .menu-text {
+      font-size: 16px;
+    }
+  }
+  
   /* =========================
      Componentes Circulares
   ========================= */

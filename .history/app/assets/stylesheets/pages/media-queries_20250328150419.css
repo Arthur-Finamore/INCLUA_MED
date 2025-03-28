@@ -224,17 +224,12 @@
       justify-content: flex-start;
       font-size: 14px;
     }
-
-    .menu-text {
-      font-size: 16px !important;
-    }
-
+    
     .icon {
-      width: 18px !important;
+      width: 18px;
     }
-
   }
-
+  
   /* =========================
      Componentes Circulares
   ========================= */
@@ -256,7 +251,7 @@
   @media (max-width: 850px) {
     .mini-circle {
       right: 53px;
-      top: 52px;
+      top: 65px;
     }
   }
   
@@ -265,7 +260,7 @@
       width: 31px;
       height: 30px;
       right: 53px;
-      top: 52px;
+      top: 56px;
     }
     
     #fullscreen-button {

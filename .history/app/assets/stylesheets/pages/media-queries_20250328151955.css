@@ -230,7 +230,8 @@
     }
 
     .icon {
-      width: 18px !important;
+      width: 20px;
+      height: 20px;
     }
 
   }
