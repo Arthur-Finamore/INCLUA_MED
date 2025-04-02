@@ -327,14 +327,10 @@ export default class extends Controller {
     const logoMenu = this.element.querySelector('.logo-menu');    
     logoMenu.classList.remove('clipped-logo');
     logoMenu.classList.add('unclipped-logo-animation');
-    logoMenu.style.marginLeft = '-38px';
 
-    const onAnimationEnd = () => {      
-      logoMenu.style.marginLeft = '0px';
-      setTimeout(() => {
-       this.resetMenuToFullExpandedStateNoAnimation();
-        logoMenu.classList.remove('unclipped-logo-animation');
-       }, 10);  
+    const onAnimationEnd = () => {
+      this.resetMenuToFullExpandedStateNoAnimation();
+      logoMenu.classList.remove('unclipped-logo-animation');
       logoMenu.removeEventListener('animationend', onAnimationEnd);
     };
 
@@ -349,7 +345,8 @@ export default class extends Controller {
     );
 
     // [CORREÇÃO] Garante que arrow-forward fica oculto
-
+    const visibleMenuList = this.element.querySelector('.menu.icons-visible ul');
+    visibleMenuList.style.alignItems = "flex-start";
     this.toggleElementsVisibility({ logoReduzida: false, icons: false, menuTexts: false });
     setTimeout(() => {
       this.arrowForwardTarget.classList.add('hidden');     
@@ -366,7 +363,7 @@ export default class extends Controller {
 
     // Reset completo do menu
     this.menuTarget.className = 'menu';
-    this.menuTarget.removeAttribute('style');
+    // this.menuTarget.removeAttribute('style');
     
     // Reaplica estilos base
     this.menuTarget.style.width = this.sizeChecker() 
@@ -377,10 +374,10 @@ export default class extends Controller {
     this.menuTarget.style.top = '0';
 
     // Reset do logo principal
-    // const logoMenu = this.element.querySelector('.logo-menu');
-    // if (logoMenu) {
-    //   logoMenu.className = 'logo-menu';
-    // }
+    const logoMenu = this.element.querySelector('.logo-menu');
+    if (logoMenu) {
+      logoMenu.className = 'logo-menu';
+    }
 
     // Reset dos ícones
     this.setInitialIcon();

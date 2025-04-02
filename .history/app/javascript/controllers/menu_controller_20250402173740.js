@@ -331,10 +331,8 @@ export default class extends Controller {
 
     const onAnimationEnd = () => {      
       logoMenu.style.marginLeft = '0px';
-      setTimeout(() => {
-       this.resetMenuToFullExpandedStateNoAnimation();
-        logoMenu.classList.remove('unclipped-logo-animation');
-       }, 10);  
+      this.resetMenuToFullExpandedStateNoAnimation();
+      logoMenu.classList.remove('unclipped-logo-animation');
       logoMenu.removeEventListener('animationend', onAnimationEnd);
     };
 
@@ -378,9 +376,9 @@ export default class extends Controller {
 
     // Reset do logo principal
     // const logoMenu = this.element.querySelector('.logo-menu');
-    // if (logoMenu) {
-    //   logoMenu.className = 'logo-menu';
-    // }
+    if (logoMenu) {
+      logoMenu.className = 'logo-menu';
+    }
 
     // Reset dos ícones
     this.setInitialIcon();

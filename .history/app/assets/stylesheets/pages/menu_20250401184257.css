@@ -420,7 +420,3 @@ li {
   justify-content: flex-start;
 }
 
-/* Garante alinhamento à esquerda durante a transição */
-.menu:not(.icons-visible) ul {
-  align-items: flex-start !important;
-}

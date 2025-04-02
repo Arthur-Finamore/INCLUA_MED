@@ -324,17 +324,13 @@ export default class extends Controller {
       'shrink-circle-logo-reduzida-animation'
     );
 
-    const logoMenu = this.element.querySelector('.logo-menu');    
+    const logoMenu = this.element.querySelector('.logo-menu');
     logoMenu.classList.remove('clipped-logo');
     logoMenu.classList.add('unclipped-logo-animation');
-    logoMenu.style.marginLeft = '-38px';
 
-    const onAnimationEnd = () => {      
-      logoMenu.style.marginLeft = '0px';
-      setTimeout(() => {
-       this.resetMenuToFullExpandedStateNoAnimation();
-        logoMenu.classList.remove('unclipped-logo-animation');
-       }, 10);  
+    const onAnimationEnd = () => {
+      this.resetMenuToFullExpandedStateNoAnimation();
+      logoMenu.classList.remove('unclipped-logo-animation');
       logoMenu.removeEventListener('animationend', onAnimationEnd);
     };
 
@@ -349,11 +345,9 @@ export default class extends Controller {
     );
 
     // [CORREÇÃO] Garante que arrow-forward fica oculto
-
-    this.toggleElementsVisibility({ logoReduzida: false, icons: false, menuTexts: false });
     setTimeout(() => {
-      this.arrowForwardTarget.classList.add('hidden');     
-      this.toggleElementsVisibility({ arrows: true, icons: true, menuTexts: true });
+      this.arrowForwardTarget.classList.add('hidden');      
+      this.toggleElementsVisibility({ arrows: true, icons: true });
     }, 600);
   }
 
@@ -377,10 +371,10 @@ export default class extends Controller {
     this.menuTarget.style.top = '0';
 
     // Reset do logo principal
-    // const logoMenu = this.element.querySelector('.logo-menu');
-    // if (logoMenu) {
-    //   logoMenu.className = 'logo-menu';
-    // }
+    const logoMenu = this.element.querySelector('.logo-menu');
+    if (logoMenu) {
+      logoMenu.className = 'logo-menu';
+    }
 
     // Reset dos ícones
     this.setInitialIcon();
@@ -392,6 +386,9 @@ export default class extends Controller {
 
     // Reset de visibilidade
     this.toggleElementsVisibility({
+      logoReduzida: false,
+      // icons: true,
+      menuTexts: true,
       arrows: true, // Mantém arrow-back visível
       hamburger: false
     });

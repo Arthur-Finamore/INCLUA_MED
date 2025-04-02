@@ -291,6 +291,9 @@ export default class extends Controller {
     console.log("Iniciando animação reversa do menu para estado expandido");
 
     this.toggleElementsVisibility({ logoReduzida: false });
+    this.toggleElementsVisibility({ logoReduzida: false });
+
+    this.arrowTarget.classList.add('hidden');
 
     // Remove todas as classes de animação residual
     this.menuTarget.classList.remove(
@@ -303,7 +306,6 @@ export default class extends Controller {
     // Reset crítico antes de iniciar animação
     this.arrowTarget.classList.remove('center-arrow', 'arrow-height');
     this.arrowForwardTarget.classList.add('hidden');
-    this.arrowTarget.classList.add('hidden');
 
     const screenClassMap = {
       [this.STATE.HIDDEN]: ['active-screen-fullscreen', 'active-screen-default'],
@@ -324,17 +326,13 @@ export default class extends Controller {
       'shrink-circle-logo-reduzida-animation'
     );
 
-    const logoMenu = this.element.querySelector('.logo-menu');    
+    const logoMenu = this.element.querySelector('.logo-menu');
     logoMenu.classList.remove('clipped-logo');
     logoMenu.classList.add('unclipped-logo-animation');
-    logoMenu.style.marginLeft = '-38px';
 
-    const onAnimationEnd = () => {      
-      logoMenu.style.marginLeft = '0px';
-      setTimeout(() => {
-       this.resetMenuToFullExpandedStateNoAnimation();
-        logoMenu.classList.remove('unclipped-logo-animation');
-       }, 10);  
+    const onAnimationEnd = () => {
+      this.resetMenuToFullExpandedStateNoAnimation();
+      logoMenu.classList.remove('unclipped-logo-animation');
       logoMenu.removeEventListener('animationend', onAnimationEnd);
     };
 
@@ -349,11 +347,9 @@ export default class extends Controller {
     );
 
     // [CORREÇÃO] Garante que arrow-forward fica oculto
-
-    this.toggleElementsVisibility({ logoReduzida: false, icons: false, menuTexts: false });
     setTimeout(() => {
-      this.arrowForwardTarget.classList.add('hidden');     
-      this.toggleElementsVisibility({ arrows: true, icons: true, menuTexts: true });
+      this.arrowForwardTarget.classList.add('hidden');      
+      this.toggleElementsVisibility({ arrows: true });
     }, 600);
   }
 
@@ -377,10 +373,10 @@ export default class extends Controller {
     this.menuTarget.style.top = '0';
 
     // Reset do logo principal
-    // const logoMenu = this.element.querySelector('.logo-menu');
-    // if (logoMenu) {
-    //   logoMenu.className = 'logo-menu';
-    // }
+    const logoMenu = this.element.querySelector('.logo-menu');
+    if (logoMenu) {
+      logoMenu.className = 'logo-menu';
+    }
 
     // Reset dos ícones
     this.setInitialIcon();
@@ -392,6 +388,9 @@ export default class extends Controller {
 
     // Reset de visibilidade
     this.toggleElementsVisibility({
+      logoReduzida: false,
+      icons: true,
+      menuTexts: true,
       arrows: true, // Mantém arrow-back visível
       hamburger: false
     });

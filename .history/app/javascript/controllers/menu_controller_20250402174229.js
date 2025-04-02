@@ -334,7 +334,7 @@ export default class extends Controller {
       setTimeout(() => {
        this.resetMenuToFullExpandedStateNoAnimation();
         logoMenu.classList.remove('unclipped-logo-animation');
-       }, 10);  
+        
       logoMenu.removeEventListener('animationend', onAnimationEnd);
     };
 
