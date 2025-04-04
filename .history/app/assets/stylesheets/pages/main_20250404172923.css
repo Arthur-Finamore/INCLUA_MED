@@ -60,11 +60,24 @@
     position: relative;
 }
 
-
-
-
-
-
-
-
-
+@media (max-width: 450px) {
+    .menu {
+      position: fixed !important; /* Sobrepõe o conteúdo */
+      z-index: 9999 !important;
+      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    }
+  
+    /* Remove o estado reduzido para mobile */
+    .menu.shrunk {
+      width: var(--menu-width) !important;
+      animation: none !important;
+    }
+  
+    /* Ajusta o active-screen para mobile */
+    .active-screen-default,
+    .active-screen-bigger,
+    .active-screen-fullscreen {
+      margin-left: 0 !important;
+      width: 100% !important;
+    }
+  }

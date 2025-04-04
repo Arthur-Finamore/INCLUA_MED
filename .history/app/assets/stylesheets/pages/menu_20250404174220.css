@@ -474,35 +474,4 @@ li {
 
 
 
-/* Animação de saída (expandido → oculto) */
-@keyframes hide-menu-vertical {
-  0% { 
-    transform: translateX(0);
-    width: 100%;
-  }
-  100% { 
-    transform: translateX(-100%);
-    width: 0;
-  }
-}
 
-/* Animação de entrada (oculto → expandido) - já existente, só ajustar */
-@keyframes reverse-expand-animation-vertical {
-  0% { 
-    transform: translateX(-100%);
-    width: 0;
-  }
-  100% { 
-    transform: translateX(0);
-    width: 100%;
-  }
-}
-
-/* Classes aplicadas */
-.hide-menu-vertical {
-  animation: hide-menu-vertical 0.5s forwards !important;
-}
-
-.reverse-expand-animation-vertical {
-  animation: reverse-expand-animation-vertical 0.5s forwards !important;
-}

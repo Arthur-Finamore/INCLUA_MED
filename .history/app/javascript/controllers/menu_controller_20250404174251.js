@@ -223,84 +223,9 @@ export default class extends Controller {
   }
 
   handleHamburgerClick() {
-    console.log("Hamburger clicado, estado atual:", this.state);
-    
-    if (this.sizeChecker()) {
-      // Implementação para mobile
-      console.log("Abrindo menu mobile via hamburger");
-      
-      // Remove a classe do hamburger imediatamente
-      this.hamburgerIconTarget.classList.add('hidden');
-      
-      // Se estiver oculto, expande o menu
-      if (this.state === this.STATE.HIDDEN) {
-        this.animateReverseMenuToExpandedState();
-      }
-      // Se já estiver expandido, mantém o estado (não faz nada)
-      
-      this.state = this.STATE.EXPANDED;
-    } else {
-      // Implementação original para desktop
-      console.log("Resetando menu de estado oculto para expandido via hamburger");
-      
-      // Remove a classe do hamburger
-      this.hamburgerIconTarget.classList.add('hidden');
-      
-      // Remove classes de animação residual
-      this.menuTarget.classList.remove(
-        'reverse-expand-animation-hamburger',
-        'reverse-expand-animation-hamburger-vertical'
-      );
-  
-      // Reset de elementos
-      this.arrowTarget.classList.remove('center-arrow', 'arrow-height');
-      this.arrowForwardTarget.classList.add('hidden');
-      
-      // Atualiza a tela ativa
-      this.updateActiveScreenClass('active-screen-fullscreen', 'active-screen-default');
-      
-      // Reset das animações da logo
-      this.logoReduzidaTarget.classList.remove(
-        'pulse-animation-logo-reduzida',
-        'fade-out-logo-reduzida-animation'
-      );
-      this.logoReduzidaCircleTarget.classList.remove(
-        'pulse-animation-logo-reduzida',
-        'shrink-circle-logo-reduzida-animation'
-      );
-  
-      // Animação do logo
-      const logoMenu = this.element.querySelector('.logo-menu');
-      logoMenu.classList.remove('clipped-logo');
-      logoMenu.classList.add('unclipped-logo-animation');
-      logoMenu.style.marginLeft = '-38px';
-  
-      const onAnimationEnd = () => {
-        logoMenu.style.marginLeft = '0px';
-        setTimeout(() => {
-          this.resetMenuToFullExpandedStateNoAnimation();
-          logoMenu.classList.remove('unclipped-logo-animation');
-        }, 10);
-        logoMenu.removeEventListener('animationend', onAnimationEnd);
-      };
-  
-      logoMenu.addEventListener('animationend', onAnimationEnd);
-  
-      // Força recálculo e inicia animação
-      void this.menuTarget.offsetWidth;
-      this.menuTarget.classList.add('reverse-expand-animation-hamburger');
-  
-      // Atualiza visibilidade dos elementos
-      this.toggleElementsVisibility({
-        hamburger: false,
-        arrows: true,
-        icons: true,
-        menuTexts: true,
-        logoReduzida: false
-      });
-  
-      this.state = this.STATE.EXPANDED;
-    }
+    console.log("Resetando menu de estado oculto para expandido via hamburger");
+    this.animateReverseMenuToExpandedState();
+    this.state = this.STATE.EXPANDED;
   }
 
   handleArrowForwardClick() {

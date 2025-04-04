@@ -478,10 +478,10 @@ li {
 @keyframes hide-menu-vertical {
   0% { 
     transform: translateX(0);
-    width: 100%;
+    width: ;
   }
   100% { 
-    transform: translateX(-100%);
+    transform: translateX(-180px);
     width: 0;
   }
 }
@@ -489,12 +489,12 @@ li {
 /* Animação de entrada (oculto → expandido) - já existente, só ajustar */
 @keyframes reverse-expand-animation-vertical {
   0% { 
-    transform: translateX(-100%);
+    transform: translateX(-180px);
     width: 0;
   }
   100% { 
     transform: translateX(0);
-    width: 100%;
+    width: 180px;
   }
 }
 

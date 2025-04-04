@@ -217,7 +217,7 @@
   ========================= */
   @media (max-width: 450px) {
     .menu {
-      width: 100% !important;
+      width: 100% ;
     }
     
     .menu:not(.shrunk):not(.hide-menu):not(.icons-visible) li {
