@@ -362,22 +362,6 @@ li {
   100% { width: var(--menu-width); }
 }
 
-@keyframes shrink-to-zero-vertical {
-  0% { width: 80px; }
-  20% { width: 90px; }
-  100% { width: 0px; }
-}
-
-@keyframes reverse-expand-menu-hamburger-vertical {
-  0% { width: 0px; }
-  100% { width: 180px; }
-}
-
-@keyframes reverse-expand-menu-vertical {
-  0% { width: 70px; }
-  100% { width: 180px; }
-}
-
 /* Classes de animação */
 .clipped-logo {
   animation: clip-logo 1s forwards;

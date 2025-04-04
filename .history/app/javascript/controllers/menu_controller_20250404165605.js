@@ -29,11 +29,7 @@ export default class extends Controller {
     console.log("Menu controller connected");
     this.initializeState();
     this.setupFullscreenHandler();
-    if (this.sizeChecker()) {
-      this.menuMobileStarter();
-    } else {
-      this.setupMenu();
-    }
+    this.setupMenu();
     this.setupResizeListener();
   }
 
@@ -89,20 +85,10 @@ export default class extends Controller {
   }
 
   setupResizeListener() {
-    let resizeTimeout;
     window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        const isMobile = this.sizeChecker();
-        this.menuTarget.style.width = isMobile ? this.MENU_WIDTHS.mobile : this.MENU_WIDTHS.desktop;
-        
-        // Resetar estado se mudar entre mobile/desktop
-        if (isMobile && this.state !== this.STATE.HIDDEN) {
-          this.menuMobileStarter();
-        } else if (!isMobile && this.state === this.STATE.HIDDEN) {
-          this.resetMenuToFullExpandedStateNoAnimation();
-        }
-      }, 100);
+      this.menuTarget.style.width = this.sizeChecker() 
+        ? this.MENU_WIDTHS.mobile 
+        : this.MENU_WIDTHS.desktop;
     });
   }
 
@@ -289,51 +275,29 @@ export default class extends Controller {
     this.state = this.STATE.REDUCED;
   }
 
-transitionToHiddenState() {
-  console.log("Iniciando animação do menu para ocultar completamente");
-  
-  // Adiciona verificação específica para mobile
-  if (this.sizeChecker()) {
-    this.menuTarget.classList.add('hide-menu-vertical');
+  transitionToHiddenState() {
+    console.log("Iniciando animação do menu para ocultar completamente");
     this.updateActiveScreenClass('active-screen-bigger', 'active-screen-fullscreen');
-    
-    // Esconde elementos imediatamente para mobile
-    this.toggleElementsVisibility({
-      icons: false,
-      arrows: false,
-      logoReduzida: false
-    });
-    
-    // Mostra hamburger após animação
+
+    this.arrowTarget.classList.add('hidden');
+    this.arrowForwardTarget.classList.add('hidden');
+
+    this.logoReduzidaTarget.classList.add('fade-out-logo-reduzida-animation');
+    this.logoReduzidaCircleTarget.classList.add('shrink-circle-logo-reduzida-animation');
+
+    setTimeout(() => {
+      this.toggleElementsVisibility({ logoReduzida: false });
+    }, 800);
+
+    this.menuTarget.classList.add(this.sizeChecker() ? 'hide-menu-vertical' : 'hide-menu');
+    this.toggleElementsVisibility({ icons: false, arrows: false });
+
+    this.state = this.STATE.HIDDEN;
+
     setTimeout(() => {
       this.toggleElementsVisibility({ hamburger: true });
     }, 700);
-    
-    this.state = this.STATE.HIDDEN;
-    return;
   }
-
-  // Restante do código original para desktop...
-  this.updateActiveScreenClass('active-screen-bigger', 'active-screen-fullscreen');
-  this.arrowTarget.classList.add('hidden');
-  this.arrowForwardTarget.classList.add('hidden');
-
-  this.logoReduzidaTarget.classList.add('fade-out-logo-reduzida-animation');
-  this.logoReduzidaCircleTarget.classList.add('shrink-circle-logo-reduzida-animation');
-
-  setTimeout(() => {
-    this.toggleElementsVisibility({ logoReduzida: false });
-  }, 800);
-
-  this.menuTarget.classList.add('hide-menu');
-  this.toggleElementsVisibility({ icons: false, arrows: false });
-
-  this.state = this.STATE.HIDDEN;
-
-  setTimeout(() => {
-    this.toggleElementsVisibility({ hamburger: true });
-  }, 700);
-}
 
   prepareResetToExpanded() {
     console.log("Resetando menu para estado expandido e exibindo hamburger");

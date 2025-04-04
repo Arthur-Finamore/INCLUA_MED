@@ -29,11 +29,7 @@ export default class extends Controller {
     console.log("Menu controller connected");
     this.initializeState();
     this.setupFullscreenHandler();
-    if (this.sizeChecker()) {
-      this.menuMobileStarter();
-    } else {
-      this.setupMenu();
-    }
+    this.setupMenu();
     this.setupResizeListener();
   }
 
@@ -89,20 +85,10 @@ export default class extends Controller {
   }
 
   setupResizeListener() {
-    let resizeTimeout;
     window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        const isMobile = this.sizeChecker();
-        this.menuTarget.style.width = isMobile ? this.MENU_WIDTHS.mobile : this.MENU_WIDTHS.desktop;
-        
-        // Resetar estado se mudar entre mobile/desktop
-        if (isMobile && this.state !== this.STATE.HIDDEN) {
-          this.menuMobileStarter();
-        } else if (!isMobile && this.state === this.STATE.HIDDEN) {
-          this.resetMenuToFullExpandedStateNoAnimation();
-        }
-      }, 100);
+      this.menuTarget.style.width = this.sizeChecker() 
+        ? this.MENU_WIDTHS.mobile 
+        : this.MENU_WIDTHS.desktop;
     });
   }
 
