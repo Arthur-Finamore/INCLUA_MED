@@ -1,6 +1,6 @@
 <div data-controller="menu" data-menu-current-path="<%= request.path %>">
-  <%= image_tag "logo-reduzida.png", class: "logo-reduzida hidden", data: { menu_target: "logoReduzida" } %>
-  <div class="logo-reduzida-circle hidden" data-menu-target="logoReduzidaCircle"></div>
+  <%= image_tag "logo-reduzida.png", class: "logo-reduzida hidden", data: { menu_target: "logoReduzida" } %> <!- -- LOGO REDUZIDA FORA DO MENU - ACIMA -->
+  <div class="logo-reduzida-circle hidden" data-menu-target="logoReduzidaCircle"></div> <!- -- CIRCULO LOGO REDUZIDA FORA DO MENU - ACIMA -->
 
   <div data-menu-target="menu" class="menu">
     <div class="container-menu">
@@ -52,29 +52,21 @@
         </ul>
       </div>
 
-      <div class="arrow-container">
-        <!-- Elemento animado para mobile -->
-        <div class="animated-menu-container mobile-only" data-menu-target="animatedMenu">
-          <input type="checkbox" class="animated-menu" id="animated-menu-toggle">
-          <label for="animated-menu-toggle"></label>
-        </div>
-        
-        <!-- Elementos originais para desktop -->
-        <%= image_tag "arrow-back", class: "arrow-back desktop-only", data: {
-          action: 'click->menu#animateMenu',
-          menu_target: "arrow"
-        } %>
+    <div class="arrow-container">
+      <%# Seta back (apenas desktop) %>
+      <%= image_tag "arrow-back", class: "arrow-back desktop-only", data: {
+        action: 'click->menu#animateMenu',
+        menu_target: "arrow"
+      } %>
+    
+      <%# Seta forward (apenas desktop) %>
+      <%= image_tag "arrow-back", class: "arrow-forward hidden desktop-only", data: {
+        action: 'click->menu#animateMenu',
+        menu_target: "arrowForward"
+      } %>
+    </div>
 
-        <%= image_tag "arrow-back", class: "arrow-forward hidden desktop-only", data: {
-          action: 'click->menu#animateMenu',
-          menu_target: "arrowForward"
-        } %>
-      </div>
     </div>
   </div>
-  
-  <%= image_tag "menu-hamburger.svg", class: "menu-hamburger hidden", data: { 
-    menu_target: "hamburgerIcon", 
-    action: 'click->menu#animateReverseMenuToExpandedState' 
-  } %>
+  <%= image_tag "menu-hamburger.svg", class: "menu-hamburger hidden", data: { menu_target: "hamburgerIcon", action: 'click->menu#animateReverseMenuToExpandedState' } %>
 </div>

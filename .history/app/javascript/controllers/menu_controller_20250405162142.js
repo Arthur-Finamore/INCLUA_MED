@@ -459,18 +459,14 @@ transitionToHiddenState() {
   animateReverseMenuToExpandedState() {
     console.log("Iniciando animação reversa do menu para estado expandido");
   
-    // Implementação para mobile (atualizada com verificações seguras)
+    // Implementação para mobile (nova)
     if (this.sizeChecker()) {
       console.log("Mobile: resetando menu de estado oculto para expandido");
       
-      // Verificação segura do elemento animado
-      if (this.hasAnimatedMenuTarget) {
-        const checkbox = this.animatedMenuTarget.querySelector('input');
-        if (checkbox) {
-          checkbox.checked = true;
-        }
-      }
-  
+      // Atualiza o estado do menu animado
+      const checkbox = this.animatedMenuTarget.querySelector('input');
+      checkbox.checked = true;
+      
       this.toggleElementsVisibility({ logoReduzida: false });
   
       // Remove todas as classes de animação residual
@@ -500,22 +496,20 @@ transitionToHiddenState() {
       );
   
       const logoMenu = this.element.querySelector('.logo-menu');    
-      if (logoMenu) {
-        logoMenu.classList.remove('clipped-logo');
-        logoMenu.classList.add('unclipped-logo-animation');
-        logoMenu.style.marginLeft = '-38px';
+      logoMenu.classList.remove('clipped-logo');
+      logoMenu.classList.add('unclipped-logo-animation');
+      logoMenu.style.marginLeft = '-38px';
   
-        const onAnimationEnd = () => {      
-          logoMenu.style.marginLeft = '0px';
-          setTimeout(() => {
-            this.resetMenuToFullExpandedStateNoAnimation();
-            logoMenu.classList.remove('unclipped-logo-animation');
-          }, 10);  
-          logoMenu.removeEventListener('animationend', onAnimationEnd);
-        };
+      const onAnimationEnd = () => {      
+        logoMenu.style.marginLeft = '0px';
+        setTimeout(() => {
+          this.resetMenuToFullExpandedStateNoAnimation();
+          logoMenu.classList.remove('unclipped-logo-animation');
+        }, 10);  
+        logoMenu.removeEventListener('animationend', onAnimationEnd);
+      };
   
-        logoMenu.addEventListener('animationend', onAnimationEnd);
-      }
+      logoMenu.addEventListener('animationend', onAnimationEnd);
   
       // Força recálculo de layout antes da animação
       void this.menuTarget.offsetWidth;
@@ -576,22 +570,20 @@ transitionToHiddenState() {
     );
   
     const logoMenu = this.element.querySelector('.logo-menu');    
-    if (logoMenu) {
-      logoMenu.classList.remove('clipped-logo');
-      logoMenu.classList.add('unclipped-logo-animation');
-      logoMenu.style.marginLeft = '-38px';
+    logoMenu.classList.remove('clipped-logo');
+    logoMenu.classList.add('unclipped-logo-animation');
+    logoMenu.style.marginLeft = '-38px';
   
-      const onAnimationEnd = () => {      
-        logoMenu.style.marginLeft = '0px';
-        setTimeout(() => {
-          this.resetMenuToFullExpandedStateNoAnimation();
-          logoMenu.classList.remove('unclipped-logo-animation');
-        }, 10);  
-        logoMenu.removeEventListener('animationend', onAnimationEnd);
-      };
+    const onAnimationEnd = () => {      
+      logoMenu.style.marginLeft = '0px';
+      setTimeout(() => {
+        this.resetMenuToFullExpandedStateNoAnimation();
+        logoMenu.classList.remove('unclipped-logo-animation');
+      }, 10);  
+      logoMenu.removeEventListener('animationend', onAnimationEnd);
+    };
   
-      logoMenu.addEventListener('animationend', onAnimationEnd);
-    }
+    logoMenu.addEventListener('animationend', onAnimationEnd);
   
     // Força recálculo de layout antes da animação
     void this.menuTarget.offsetWidth;

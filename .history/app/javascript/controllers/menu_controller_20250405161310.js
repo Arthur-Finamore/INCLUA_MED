@@ -10,8 +10,7 @@ export default class extends Controller {
     "arrowForward",
     "hamburgerIcon",
     "logoReduzida",
-    "logoReduzidaCircle",
-    "animatedMenu"
+    "logoReduzidaCircle"
   ]
 
   // Constantes para melhor legibilidade
@@ -187,18 +186,18 @@ export default class extends Controller {
     }
   }
 
-  // Adicione este novo método ao controller
-  handleMobileItemSelection() {
-    if (this.sizeChecker() && this.state === this.STATE.EXPANDED) {
-      this.transitionToHiddenState();
-      
-      // Atualiza o estado do menu animado
-      const checkbox = this.animatedMenuTarget.querySelector('input');
-      if (checkbox) {
-        checkbox.checked = false;
+    // Adicione este novo método ao controller
+    handleMobileItemSelection() {
+      if (this.sizeChecker() && this.state === this.STATE.EXPANDED) {
+        this.transitionToHiddenState();
+        
+        // Atualiza o estado do menu animado
+        const checkbox = this.animatedMenuTarget.querySelector('input');
+        if (checkbox) {
+          checkbox.checked = false;
+        }
       }
     }
-  }
 
   animateMenu(event) {
     console.log("animateMenu called, state:", this.state, "event.target:", event.target);
@@ -459,18 +458,10 @@ transitionToHiddenState() {
   animateReverseMenuToExpandedState() {
     console.log("Iniciando animação reversa do menu para estado expandido");
   
-    // Implementação para mobile (atualizada com verificações seguras)
+    // Tratamento específico para mobile (novo)
     if (this.sizeChecker()) {
-      console.log("Mobile: resetando menu de estado oculto para expandido");
+      console.log("Resetando menu mobile de estado oculto para expandido");
       
-      // Verificação segura do elemento animado
-      if (this.hasAnimatedMenuTarget) {
-        const checkbox = this.animatedMenuTarget.querySelector('input');
-        if (checkbox) {
-          checkbox.checked = true;
-        }
-      }
-  
       this.toggleElementsVisibility({ logoReduzida: false });
   
       // Remove todas as classes de animação residual
@@ -500,47 +491,35 @@ transitionToHiddenState() {
       );
   
       const logoMenu = this.element.querySelector('.logo-menu');    
-      if (logoMenu) {
-        logoMenu.classList.remove('clipped-logo');
-        logoMenu.classList.add('unclipped-logo-animation');
-        logoMenu.style.marginLeft = '-38px';
+      logoMenu.classList.remove('clipped-logo');
+      logoMenu.classList.add('unclipped-logo-animation');
+      logoMenu.style.marginLeft = '-38px';
   
-        const onAnimationEnd = () => {      
-          logoMenu.style.marginLeft = '0px';
-          setTimeout(() => {
-            this.resetMenuToFullExpandedStateNoAnimation();
-            logoMenu.classList.remove('unclipped-logo-animation');
-          }, 10);  
-          logoMenu.removeEventListener('animationend', onAnimationEnd);
-        };
+      const onAnimationEnd = () => {      
+        logoMenu.style.marginLeft = '0px';
+        setTimeout(() => {
+          this.resetMenuToFullExpandedStateNoAnimation();
+          logoMenu.classList.remove('unclipped-logo-animation');
+        }, 10);  
+        logoMenu.removeEventListener('animationend', onAnimationEnd);
+      };
   
-        logoMenu.addEventListener('animationend', onAnimationEnd);
-      }
+      logoMenu.addEventListener('animationend', onAnimationEnd);
   
       // Força recálculo de layout antes da animação
       void this.menuTarget.offsetWidth;
       this.menuTarget.classList.add('reverse-expand-animation-vertical');
   
-      this.toggleElementsVisibility({ 
-        logoReduzida: false, 
-        icons: false, 
-        menuTexts: false,
-        hamburger: false
-      });
-      
+      this.toggleElementsVisibility({ logoReduzida: false, icons: false, menuTexts: false });
       setTimeout(() => {
         this.arrowForwardTarget.classList.add('hidden');     
-        this.toggleElementsVisibility({ 
-          arrows: true, 
-          icons: true, 
-          menuTexts: true 
-        });
+        this.toggleElementsVisibility({ arrows: true, icons: true, menuTexts: true });
       }, 600);
       
       return;
     }
   
-    // Implementação original para desktop (mantida sem alterações)
+    // Implementação original para desktop (mantida)
     this.toggleElementsVisibility({ logoReduzida: false });
   
     // Remove todas as classes de animação residual
@@ -576,22 +555,20 @@ transitionToHiddenState() {
     );
   
     const logoMenu = this.element.querySelector('.logo-menu');    
-    if (logoMenu) {
-      logoMenu.classList.remove('clipped-logo');
-      logoMenu.classList.add('unclipped-logo-animation');
-      logoMenu.style.marginLeft = '-38px';
+    logoMenu.classList.remove('clipped-logo');
+    logoMenu.classList.add('unclipped-logo-animation');
+    logoMenu.style.marginLeft = '-38px';
   
-      const onAnimationEnd = () => {      
-        logoMenu.style.marginLeft = '0px';
-        setTimeout(() => {
-          this.resetMenuToFullExpandedStateNoAnimation();
-          logoMenu.classList.remove('unclipped-logo-animation');
-        }, 10);  
-        logoMenu.removeEventListener('animationend', onAnimationEnd);
-      };
+    const onAnimationEnd = () => {      
+      logoMenu.style.marginLeft = '0px';
+      setTimeout(() => {
+        this.resetMenuToFullExpandedStateNoAnimation();
+        logoMenu.classList.remove('unclipped-logo-animation');
+      }, 10);  
+      logoMenu.removeEventListener('animationend', onAnimationEnd);
+    };
   
-      logoMenu.addEventListener('animationend', onAnimationEnd);
-    }
+    logoMenu.addEventListener('animationend', onAnimationEnd);
   
     // Força recálculo de layout antes da animação
     void this.menuTarget.offsetWidth;
@@ -601,20 +578,11 @@ transitionToHiddenState() {
         : 'reverse-expand-animation'
     );
   
-    // Garante que arrow-forward fica oculto
-    this.toggleElementsVisibility({ 
-      logoReduzida: false, 
-      icons: false, 
-      menuTexts: false 
-    });
-    
+    // [CORREÇÃO] Garante que arrow-forward fica oculto
+    this.toggleElementsVisibility({ logoReduzida: false, icons: false, menuTexts: false });
     setTimeout(() => {
       this.arrowForwardTarget.classList.add('hidden');     
-      this.toggleElementsVisibility({ 
-        arrows: true, 
-        icons: true, 
-        menuTexts: true 
-      });
+      this.toggleElementsVisibility({ arrows: true, icons: true, menuTexts: true });
     }, 600);
   }
 
