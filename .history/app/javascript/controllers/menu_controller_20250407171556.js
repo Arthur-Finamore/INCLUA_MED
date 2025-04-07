@@ -60,28 +60,67 @@ export default class extends Controller {
     this.menuTarget.style.top = '0';
   }
 
-  setupFullscreenHandler() {
-    const fullscreenButton = document.getElementById('fullscreen-button');
+setupFullscreenHandler() {
+  const fullscreenButton = document.getElementById('fullscreen-button');
+  let lastFullscreenState = false;
+
+  const updateFullscreenText = () => {
+    const fullscreenText = fullscreenButton.querySelector('p');
     
-    const updateFullscreenText = () => {
-      const fullscreenText = fullscreenButton.querySelector('p');
-      const isFullscreen = document.fullscreenElement || window.innerHeight === screen.height;
+    // Método mais confiável para mobile
+    const isFullscreen = document.fullscreenElement || 
+                        window.innerHeight > window.screen.height * 0.95;
+    
+    // Só atualiza se o estado mudar
+    if (isFullscreen !== lastFullscreenState) {
       fullscreenText.textContent = isFullscreen ? 'MINIMIZAR' : 'MAXIMIZAR';
-    };
+      lastFullscreenState = isFullscreen;
+    }
+  };
 
-    fullscreenButton.addEventListener("click", () => {
-      document.fullscreenElement 
-        ? document.exitFullscreen() 
-        : document.documentElement.requestFullscreen().catch(console.error);
-    });
+  // Evento de clique
+  fullscreenButton.addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen()
+        .then(() => updateFullscreenText())
+        .catch(console.error);
+    } else {
+      document.exitFullscreen()
+        .then(() => updateFullscreenText())
+        .catch(console.error);
+    }
+  });
 
-    document.addEventListener('fullscreenchange', updateFullscreenText);
-    document.addEventListener('keydown', (e) => e.key === 'F11' && setTimeout(updateFullscreenText, 100));
-    window.addEventListener('resize', () => {
-      clearTimeout(window.resizeDebounce);
-      window.resizeDebounce = setTimeout(updateFullscreenText, 100);
-    });
-  }
+  // Listeners melhorados
+  const fullscreenEvents = [
+    'fullscreenchange',
+    'webkitfullscreenchange', // Safari
+    'mozfullscreenchange',    // Firefox
+    'msfullscreenchange'      // IE/Edge
+  ];
+
+  fullscreenEvents.forEach(event => {
+    document.addEventListener(event, updateFullscreenText);
+  });
+
+  // Listener de resize otimizado para mobile
+  window.addEventListener('resize', () => {
+    clearTimeout(this.resizeTimeout);
+    this.resizeTimeout = setTimeout(() => {
+      // Forçar atualização apenas se for mobile
+      if (this.sizeChecker()) {
+        updateFullscreenText();
+        // Fallback extra para alguns dispositivos
+        if (!document.fullscreenElement) {
+          fullscreenButton.querySelector('p').textContent = 'MAXIMIZAR';
+        }
+      }
+    }, 300); // Debounce maior para mobile
+  });
+
+  // Inicialização
+  updateFullscreenText();
+}
 
   setupMenu() {
     this.sizeChecker();

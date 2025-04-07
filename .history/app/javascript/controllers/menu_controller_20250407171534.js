@@ -14,6 +14,8 @@ export default class extends Controller {
     "animatedMenu"
   ]
 
+  resizeTimeout = null;
+
   // Constantes para melhor legibilidade
   MENU_WIDTHS = {
     mobile: "180px",
@@ -63,24 +65,57 @@ export default class extends Controller {
   setupFullscreenHandler() {
     const fullscreenButton = document.getElementById('fullscreen-button');
     
-    const updateFullscreenText = () => {
+    const updateFullscreenText = (forceCheck = false) => {
       const fullscreenText = fullscreenButton.querySelector('p');
-      const isFullscreen = document.fullscreenElement || window.innerHeight === screen.height;
+      let isFullscreen;
+      
+      // Método otimizado para o Chrome DevTools mobile
+      if (forceCheck || this.sizeChecker()) {
+        // Verificação específica para o modo de emulação
+        isFullscreen = document.fullscreenElement || 
+                      Math.abs(window.innerHeight - screen.height) < 5;
+      } else {
+        // Verificação normal para desktop
+        isFullscreen = !!document.fullscreenElement;
+      }
+  
+      console.log('Fullscreen state:', {
+        isFullscreen,
+        innerHeight: window.innerHeight,
+        screenHeight: screen.height,
+        diff: Math.abs(window.innerHeight - screen.height)
+      });
+  
       fullscreenText.textContent = isFullscreen ? 'MINIMIZAR' : 'MAXIMIZAR';
     };
-
+  
     fullscreenButton.addEventListener("click", () => {
-      document.fullscreenElement 
-        ? document.exitFullscreen() 
-        : document.documentElement.requestFullscreen().catch(console.error);
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen()
+          .then(() => updateFullscreenText(true))
+          .catch(err => console.error('Fullscreen error:', err));
+      } else {
+        document.exitFullscreen()
+          .then(() => updateFullscreenText(true))
+          .catch(err => console.error('Exit fullscreen error:', err));
+      }
     });
-
-    document.addEventListener('fullscreenchange', updateFullscreenText);
-    document.addEventListener('keydown', (e) => e.key === 'F11' && setTimeout(updateFullscreenText, 100));
-    window.addEventListener('resize', () => {
-      clearTimeout(window.resizeDebounce);
-      window.resizeDebounce = setTimeout(updateFullscreenText, 100);
+  
+    // Listeners melhorados
+    const fullscreenEvents = [
+      'fullscreenchange',
+      'resize',
+      'webkitfullscreenchange',
+      'mozfullscreenchange',
+      'msfullscreenchange'
+    ];
+  
+    fullscreenEvents.forEach(event => {
+      window.addEventListener(event, () => updateFullscreenText(true));
     });
+  
+    // Atualização inicial
+    updateFullscreenText(true);
   }
 
   setupMenu() {
@@ -108,7 +143,12 @@ export default class extends Controller {
   }
 
   sizeChecker() {
-    return window.innerWidth <= 450;
+    const isMobile = window.innerWidth <= 450;
+    console.log('Mobile check:', {
+      innerWidth: window.innerWidth,
+      isMobile
+    });
+    return isMobile;
   }
 
   menuMobileStarter() {

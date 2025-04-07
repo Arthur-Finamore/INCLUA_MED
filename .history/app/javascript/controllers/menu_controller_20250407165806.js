@@ -14,6 +14,9 @@ export default class extends Controller {
     "animatedMenu"
   ]
 
+  fullscreenResizeTimeout = null;
+  fullscreenCheckInterval = null;
+
   // Constantes para melhor legibilidade
   MENU_WIDTHS = {
     mobile: "180px",
@@ -65,22 +68,52 @@ export default class extends Controller {
     
     const updateFullscreenText = () => {
       const fullscreenText = fullscreenButton.querySelector('p');
-      const isFullscreen = document.fullscreenElement || window.innerHeight === screen.height;
-      fullscreenText.textContent = isFullscreen ? 'MINIMIZAR' : 'MAXIMIZAR';
+      // Método mais confiável para detectar fullscreen em mobile
+      const isFullscreen = document.fullscreenElement || 
+                          window.innerHeight === window.screen.height;
+      
+      if (fullscreenText) {
+        fullscreenText.textContent = isFullscreen ? 'MINIMIZAR' : 'MAXIMIZAR';
+      }
     };
-
+  
     fullscreenButton.addEventListener("click", () => {
-      document.fullscreenElement 
-        ? document.exitFullscreen() 
-        : document.documentElement.requestFullscreen().catch(console.error);
+      if (!document.fullscreenElement) {
+        // Entrar em fullscreen
+        document.documentElement.requestFullscreen()
+          .then(() => updateFullscreenText())
+          .catch(err => console.error("Erro ao entrar em fullscreen:", err));
+      } else {
+        // Sair do fullscreen
+        document.exitFullscreen()
+          .then(() => updateFullscreenText())
+          .catch(err => console.error("Erro ao sair do fullscreen:", err));
+      }
     });
-
-    document.addEventListener('fullscreenchange', updateFullscreenText);
-    document.addEventListener('keydown', (e) => e.key === 'F11' && setTimeout(updateFullscreenText, 100));
-    window.addEventListener('resize', () => {
-      clearTimeout(window.resizeDebounce);
-      window.resizeDebounce = setTimeout(updateFullscreenText, 100);
+  
+    // Adiciona listeners para todos os navegadores
+    const fullscreenEvents = [
+      'fullscreenchange',
+      'webkitfullscreenchange',
+      'mozfullscreenchange',
+      'msfullscreenchange'
+    ];
+  
+    fullscreenEvents.forEach(event => {
+      document.addEventListener(event, updateFullscreenText);
     });
+  
+    // Fallback para mobile - verifica a cada 300ms por mudanças
+    this.fullscreenCheckInterval = setInterval(() => {
+      updateFullscreenText();
+    }, 300);
+  }
+  
+  // Não esqueça de limpar o intervalo quando o controller for desconectado
+  disconnect() {
+    if (this.fullscreenCheckInterval) {
+      clearInterval(this.fullscreenCheckInterval);
+    }
   }
 
   setupMenu() {

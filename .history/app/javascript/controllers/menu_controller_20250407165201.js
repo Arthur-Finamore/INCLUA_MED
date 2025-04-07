@@ -65,21 +65,40 @@ export default class extends Controller {
     
     const updateFullscreenText = () => {
       const fullscreenText = fullscreenButton.querySelector('p');
-      const isFullscreen = document.fullscreenElement || window.innerHeight === screen.height;
-      fullscreenText.textContent = isFullscreen ? 'MINIMIZAR' : 'MAXIMIZAR';
+      // Verificação mais robusta para mobile
+      const isFullscreen = document.fullscreenElement || 
+                          window.innerHeight === screen.height ||
+                          (window.matchMedia('(display-mode: fullscreen)').matches);
+      
+      if (fullscreenText) {
+        fullscreenText.textContent = isFullscreen ? 'MINIMIZAR' : 'MAXIMIZAR';
+      }
     };
-
+  
     fullscreenButton.addEventListener("click", () => {
-      document.fullscreenElement 
-        ? document.exitFullscreen() 
-        : document.documentElement.requestFullscreen().catch(console.error);
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(console.error);
+      } else {
+        document.exitFullscreen();
+      }
     });
-
+  
+    // Adiciona listeners para ambos os eventos (fullscreenchange e fullscreenerror)
     document.addEventListener('fullscreenchange', updateFullscreenText);
-    document.addEventListener('keydown', (e) => e.key === 'F11' && setTimeout(updateFullscreenText, 100));
+    document.addEventListener('webkitfullscreenchange', updateFullscreenText); // Para Safari
+    document.addEventListener('msfullscreenchange', updateFullscreenText); // Para IE/Edge
+    document.addEventListener('mozfullscreenchange', updateFullscreenText); // Para Firefox
+  
+    // Listener específico para mobile quando sai do modo fullscreen via gesto
     window.addEventListener('resize', () => {
-      clearTimeout(window.resizeDebounce);
-      window.resizeDebounce = setTimeout(updateFullscreenText, 100);
+      // Debounce para evitar execução múltipla
+      clearTimeout(this.fullscreenResizeTimeout);
+      this.fullscreenResizeTimeout = setTimeout(() => {
+        // Verificação extra para mobile
+        if (this.sizeChecker() && !document.fullscreenElement) {
+          updateFullscreenText();
+        }
+      }, 100);
     });
   }
 

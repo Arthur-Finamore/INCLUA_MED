@@ -456,116 +456,39 @@ transitionToHiddenState() {
   
 
   // [CORREÇÃO PRINCIPAL] Animação reversa totalmente resetada
-  animateReverseMenuToExpandedState() {
-    console.log("Iniciando animação reversa do menu para estado expandido");
-  
-    // Implementação para mobile (atualizada com verificações seguras)
-    if (this.sizeChecker()) {
-      console.log("Mobile: resetando menu de estado oculto para expandido");
-      
-      // Verificação segura do elemento animado
-      if (this.hasAnimatedMenuTarget) {
-        const checkbox = this.animatedMenuTarget.querySelector('input');
-        if (checkbox) {
-          checkbox.checked = true;
-        }
+animateReverseMenuToExpandedState() {
+  console.log("Iniciando animação reversa do menu para estado expandido");
+
+  // Implementação para mobile (atualizada com verificações seguras)
+  if (this.sizeChecker()) {
+    console.log("Mobile: resetando menu de estado oculto para expandido");
+    
+    // Verificação segura do elemento animado
+    if (this.hasAnimatedMenuTarget) {
+      const checkbox = this.animatedMenuTarget.querySelector('input');
+      if (checkbox) {
+        checkbox.checked = true;
       }
-  
-      this.toggleElementsVisibility({ logoReduzida: false });
-  
-      // Remove todas as classes de animação residual
-      this.menuTarget.classList.remove(
-        'reverse-expand-animation', 
-        'reverse-expand-animation-vertical',
-        'reverse-expand-animation-hamburger',
-        'reverse-expand-animation-hamburger-vertical'
-      );
-  
-      // Reset crítico antes de iniciar animação
-      this.arrowTarget.classList.remove('center-arrow', 'arrow-height');
-      this.arrowForwardTarget.classList.add('hidden');
-      this.arrowTarget.classList.add('hidden');
-  
-      // Atualiza classes da tela ativa
-      this.updateActiveScreenClass('active-screen-fullscreen', 'active-screen-default');
-  
-      // Reset completo das animações da logo
-      this.logoReduzidaTarget.classList.remove(
-        'pulse-animation-logo-reduzida',
-        'fade-out-logo-reduzida-animation'
-      );
-      this.logoReduzidaCircleTarget.classList.remove(
-        'pulse-animation-logo-reduzida',
-        'shrink-circle-logo-reduzida-animation'
-      );
-  
-      const logoMenu = this.element.querySelector('.logo-menu');    
-      if (logoMenu) {
-        logoMenu.classList.remove('clipped-logo');
-        logoMenu.classList.add('unclipped-logo-animation');
-        logoMenu.style.marginLeft = '-38px';
-  
-        const onAnimationEnd = () => {      
-          logoMenu.style.marginLeft = '0px';
-          setTimeout(() => {
-            this.resetMenuToFullExpandedStateNoAnimation();
-            logoMenu.classList.remove('unclipped-logo-animation');
-          }, 10);  
-          logoMenu.removeEventListener('animationend', onAnimationEnd);
-        };
-  
-        logoMenu.addEventListener('animationend', onAnimationEnd);
-      }
-  
-      // Força recálculo de layout antes da animação
-      void this.menuTarget.offsetWidth;
-      this.menuTarget.classList.add('reverse-expand-animation-vertical');
-  
-      this.toggleElementsVisibility({ 
-        logoReduzida: false, 
-        icons: false, 
-        menuTexts: false,
-        hamburger: false
-      });
-      
-      setTimeout(() => {
-        this.arrowForwardTarget.classList.add('hidden');     
-        this.toggleElementsVisibility({ 
-          arrows: true, 
-          icons: true, 
-          menuTexts: true 
-        });
-      }, 600);
-      
-      return;
     }
-  
-    // IMPLEMENTAÇÃO CORRIGIDA PARA DESKTOP
+
     this.toggleElementsVisibility({ logoReduzida: false });
-  
+
     // Remove todas as classes de animação residual
     this.menuTarget.classList.remove(
       'reverse-expand-animation', 
       'reverse-expand-animation-vertical',
       'reverse-expand-animation-hamburger',
-      'reverse-expand-animation-hamburger-vertical',
-      'expand-from-reduced-animation'
+      'reverse-expand-animation-hamburger-vertical'
     );
-  
+
     // Reset crítico antes de iniciar animação
     this.arrowTarget.classList.remove('center-arrow', 'arrow-height');
     this.arrowForwardTarget.classList.add('hidden');
     this.arrowTarget.classList.add('hidden');
-  
-    const screenClassMap = {
-      [this.STATE.HIDDEN]: ['active-screen-fullscreen', 'active-screen-default'],
-      [this.STATE.REDUCED]: ['active-screen-bigger', 'active-screen-default']
-    };
-  
-    if (screenClassMap[this.state]) {
-      this.updateActiveScreenClass(...screenClassMap[this.state]);
-    }
-  
+
+    // Atualiza classes da tela ativa
+    this.updateActiveScreenClass('active-screen-fullscreen', 'active-screen-default');
+
     // Reset completo das animações da logo
     this.logoReduzidaTarget.classList.remove(
       'pulse-animation-logo-reduzida',
@@ -575,13 +498,13 @@ transitionToHiddenState() {
       'pulse-animation-logo-reduzida',
       'shrink-circle-logo-reduzida-animation'
     );
-  
+
     const logoMenu = this.element.querySelector('.logo-menu');    
     if (logoMenu) {
       logoMenu.classList.remove('clipped-logo');
       logoMenu.classList.add('unclipped-logo-animation');
       logoMenu.style.marginLeft = '-38px';
-  
+
       const onAnimationEnd = () => {      
         logoMenu.style.marginLeft = '0px';
         setTimeout(() => {
@@ -590,25 +513,19 @@ transitionToHiddenState() {
         }, 10);  
         logoMenu.removeEventListener('animationend', onAnimationEnd);
       };
-  
+
       logoMenu.addEventListener('animationend', onAnimationEnd);
     }
-  
+
     // Força recálculo de layout antes da animação
     void this.menuTarget.offsetWidth;
-  
-    // NOVO: Aplica a animação correta baseada no estado atual
-    if (this.state === this.STATE.HIDDEN) {
-      this.menuTarget.classList.add('reverse-expand-animation');
-    } else if (this.state === this.STATE.REDUCED) {
-      this.menuTarget.classList.add('expand-from-reduced-animation');
-    }
-  
-    // Garante que arrow-forward fica oculto
+    this.menuTarget.classList.add('reverse-expand-animation-vertical');
+
     this.toggleElementsVisibility({ 
       logoReduzida: false, 
       icons: false, 
-      menuTexts: false 
+      menuTexts: false,
+      hamburger: false
     });
     
     setTimeout(() => {
@@ -619,12 +536,95 @@ transitionToHiddenState() {
         menuTexts: true 
       });
     }, 600);
-  
-    // NOVO: Reset do estado após a animação
-    setTimeout(() => {
-      this.resetMenuToFullExpandedStateNoAnimation();
-    }, 600);
+    
+    return;
   }
+
+  // IMPLEMENTAÇÃO CORRIGIDA PARA DESKTOP
+  this.toggleElementsVisibility({ logoReduzida: false });
+
+  // Remove todas as classes de animação residual
+  this.menuTarget.classList.remove(
+    'reverse-expand-animation', 
+    'reverse-expand-animation-vertical',
+    'reverse-expand-animation-hamburger',
+    'reverse-expand-animation-hamburger-vertical',
+    'expand-from-reduced-animation'
+  );
+
+  // Reset crítico antes de iniciar animação
+  this.arrowTarget.classList.remove('center-arrow', 'arrow-height');
+  this.arrowForwardTarget.classList.add('hidden');
+  this.arrowTarget.classList.add('hidden');
+
+  const screenClassMap = {
+    [this.STATE.HIDDEN]: ['active-screen-fullscreen', 'active-screen-default'],
+    [this.STATE.REDUCED]: ['active-screen-bigger', 'active-screen-default']
+  };
+
+  if (screenClassMap[this.state]) {
+    this.updateActiveScreenClass(...screenClassMap[this.state]);
+  }
+
+  // Reset completo das animações da logo
+  this.logoReduzidaTarget.classList.remove(
+    'pulse-animation-logo-reduzida',
+    'fade-out-logo-reduzida-animation'
+  );
+  this.logoReduzidaCircleTarget.classList.remove(
+    'pulse-animation-logo-reduzida',
+    'shrink-circle-logo-reduzida-animation'
+  );
+
+  const logoMenu = this.element.querySelector('.logo-menu');    
+  if (logoMenu) {
+    logoMenu.classList.remove('clipped-logo');
+    logoMenu.classList.add('unclipped-logo-animation');
+    logoMenu.style.marginLeft = '-38px';
+
+    const onAnimationEnd = () => {      
+      logoMenu.style.marginLeft = '0px';
+      setTimeout(() => {
+        this.resetMenuToFullExpandedStateNoAnimation();
+        logoMenu.classList.remove('unclipped-logo-animation');
+      }, 10);  
+      logoMenu.removeEventListener('animationend', onAnimationEnd);
+    };
+
+    logoMenu.addEventListener('animationend', onAnimationEnd);
+  }
+
+  // Força recálculo de layout antes da animação
+  void this.menuTarget.offsetWidth;
+
+  // NOVO: Aplica a animação correta baseada no estado atual
+  if (this.state === this.STATE.HIDDEN) {
+    this.menuTarget.classList.add('reverse-expand-animation');
+  } else if (this.state === this.STATE.REDUCED) {
+    this.menuTarget.classList.add('expand-from-reduced-animation');
+  }
+
+  // Garante que arrow-forward fica oculto
+  this.toggleElementsVisibility({ 
+    logoReduzida: false, 
+    icons: false, 
+    menuTexts: false 
+  });
+  
+  setTimeout(() => {
+    this.arrowForwardTarget.classList.add('hidden');     
+    this.toggleElementsVisibility({ 
+      arrows: true, 
+      icons: true, 
+      menuTexts: true 
+    });
+  }, 600);
+
+  // NOVO: Reset do estado após a animação
+  setTimeout(() => {
+    this.resetMenuToFullExpandedStateNoAnimation();
+  }, 600);
+}
 
   // [CORREÇÃO PRINCIPAL] Reset completo do estado expandido
   resetMenuToFullExpandedStateNoAnimation() {

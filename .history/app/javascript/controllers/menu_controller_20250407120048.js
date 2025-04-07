@@ -470,6 +470,17 @@ transitionToHiddenState() {
           checkbox.checked = true;
         }
       }
+
+      if (!this.sizeChecker()) {
+        // Para desktop
+        this.menuTarget.classList.remove('reverse-expand-animation');
+        void this.menuTarget.offsetWidth; // Força recálculo
+        if (this.state === this.STATE.HIDDEN) {
+          this.menuTarget.classList.add('reverse-expand-animation');
+        } else if (this.state === this.STATE.REDUCED) {
+          this.menuTarget.classList.add('expand-from-reduced-animation');
+        }
+      }
   
       this.toggleElementsVisibility({ logoReduzida: false });
   
@@ -540,7 +551,7 @@ transitionToHiddenState() {
       return;
     }
   
-    // IMPLEMENTAÇÃO CORRIGIDA PARA DESKTOP
+    // Implementação original para desktop (mantida sem alterações)
     this.toggleElementsVisibility({ logoReduzida: false });
   
     // Remove todas as classes de animação residual
@@ -548,8 +559,7 @@ transitionToHiddenState() {
       'reverse-expand-animation', 
       'reverse-expand-animation-vertical',
       'reverse-expand-animation-hamburger',
-      'reverse-expand-animation-hamburger-vertical',
-      'expand-from-reduced-animation'
+      'reverse-expand-animation-hamburger-vertical'
     );
   
     // Reset crítico antes de iniciar animação
@@ -596,13 +606,11 @@ transitionToHiddenState() {
   
     // Força recálculo de layout antes da animação
     void this.menuTarget.offsetWidth;
-  
-    // NOVO: Aplica a animação correta baseada no estado atual
-    if (this.state === this.STATE.HIDDEN) {
-      this.menuTarget.classList.add('reverse-expand-animation');
-    } else if (this.state === this.STATE.REDUCED) {
-      this.menuTarget.classList.add('expand-from-reduced-animation');
-    }
+    this.menuTarget.classList.add(
+      this.sizeChecker() 
+        ? 'reverse-expand-animation-vertical' 
+        : 'reverse-expand-animation'
+    );
   
     // Garante que arrow-forward fica oculto
     this.toggleElementsVisibility({ 
@@ -618,11 +626,6 @@ transitionToHiddenState() {
         icons: true, 
         menuTexts: true 
       });
-    }, 600);
-  
-    // NOVO: Reset do estado após a animação
-    setTimeout(() => {
-      this.resetMenuToFullExpandedStateNoAnimation();
     }, 600);
   }
 

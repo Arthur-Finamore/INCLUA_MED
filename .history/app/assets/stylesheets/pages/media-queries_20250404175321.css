@@ -278,7 +278,8 @@
   
   @media (max-width: 450px) {
     .mini-circle {
-      width: 20px;
+      width: 31px !important;
+      height: 30px !important;
       top: 82px;
       right: 53px;
     }
@@ -305,7 +306,8 @@
     }
 
     .mini-circle {
-      width: 20px;
+      width: 31px;
+      height: 30px;
       top: 82px;
       right: 53px;
     }

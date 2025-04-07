@@ -277,7 +277,9 @@
 
 @keyframes expand-from-reduced {
   0% { width: var(--menu-width-shrunk); }
-  100% { width: var(--menu-width); }
+  100% { 
+    width: var(--menu-width);
+  }
 }
 
 @keyframes shrink-to-zero {
@@ -325,10 +327,6 @@
   animation: shrink-to-zero 1s forwards;
 }
 
-.reverse-expand-animation {
-  animation: reverse-expand-menu 0.6s forwards;
-}
-
 .reverse-expand-animation-hamburger {
   animation: reverse-expand-menu-hamburger 0.6s forwards;
 }
@@ -351,8 +349,4 @@
 
 .logo-reduzida-circle.shrink-circle-logo-reduzida-animation {
   animation: shrink-circle-logo-reduzida 0.8s forwards;
-}
-
-.expand-from-reduced-animation {
-  animation: expand-from-reduced 0.6s forwards;
 }

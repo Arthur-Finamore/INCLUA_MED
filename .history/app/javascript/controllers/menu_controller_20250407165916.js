@@ -60,28 +60,47 @@ export default class extends Controller {
     this.menuTarget.style.top = '0';
   }
 
-  setupFullscreenHandler() {
-    const fullscreenButton = document.getElementById('fullscreen-button');
+setupFullscreenHandler() {
+  const fullscreenButton = document.getElementById('fullscreen-button');
+  
+  const updateFullscreenText = () => {
+    const fullscreenText = fullscreenButton.querySelector('p');
+    // Verificação mais robusta para mobile
+    const isFullscreen = document.fullscreenElement || 
+                        window.innerHeight === screen.height ||
+                        (window.matchMedia('(display-mode: fullscreen)').matches);
     
-    const updateFullscreenText = () => {
-      const fullscreenText = fullscreenButton.querySelector('p');
-      const isFullscreen = document.fullscreenElement || window.innerHeight === screen.height;
+    if (fullscreenText) {
       fullscreenText.textContent = isFullscreen ? 'MINIMIZAR' : 'MAXIMIZAR';
-    };
+    }
+  };
 
-    fullscreenButton.addEventListener("click", () => {
-      document.fullscreenElement 
-        ? document.exitFullscreen() 
-        : document.documentElement.requestFullscreen().catch(console.error);
-    });
+  fullscreenButton.addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(console.error);
+    } else {
+      document.exitFullscreen();
+    }
+  });
 
-    document.addEventListener('fullscreenchange', updateFullscreenText);
-    document.addEventListener('keydown', (e) => e.key === 'F11' && setTimeout(updateFullscreenText, 100));
-    window.addEventListener('resize', () => {
-      clearTimeout(window.resizeDebounce);
-      window.resizeDebounce = setTimeout(updateFullscreenText, 100);
-    });
-  }
+  // Adiciona listeners para ambos os eventos (fullscreenchange e fullscreenerror)
+  document.addEventListener('fullscreenchange', updateFullscreenText);
+  document.addEventListener('webkitfullscreenchange', updateFullscreenText); // Para Safari
+  document.addEventListener('msfullscreenchange', updateFullscreenText); // Para IE/Edge
+  document.addEventListener('mozfullscreenchange', updateFullscreenText); // Para Firefox
+
+  // Listener específico para mobile quando sai do modo fullscreen via gesto
+  window.addEventListener('resize', () => {
+    // Debounce para evitar execução múltipla
+    clearTimeout(this.fullscreenResizeTimeout);
+    this.fullscreenResizeTimeout = setTimeout(() => {
+      // Verificação extra para mobile
+      if (this.sizeChecker() && !document.fullscreenElement) {
+        updateFullscreenText();
+      }
+    }, 100);
+  });
+}
 
   setupMenu() {
     this.sizeChecker();
