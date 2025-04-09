@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.1.2"
 
 gem 'rails', '~> 7.1.5.1'
-gem 'nokogiri', '>= 1.14'
+gem 'nokogiri', '>= 1.18'
 gem 'rails-html-sanitizer', '~> 1.6'
 gem 'activesupport', '7.1.5.1'
 gem "font-awesome-sass", "~> 4.7"
