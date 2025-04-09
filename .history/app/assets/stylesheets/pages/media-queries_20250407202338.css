@@ -3,7 +3,7 @@
 ========================= */
 @media (max-width: 1260px) {
   iframe.youtube-player {
-    width: 1200px;
+    width: 1050px;
     height: 500px;
   }
 }
