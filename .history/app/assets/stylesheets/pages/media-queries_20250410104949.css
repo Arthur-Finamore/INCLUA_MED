@@ -3,8 +3,22 @@
 ========================= */
 @media (max-width: 1260px) {
   iframe.youtube-player {
-    width: 850px;
-    height: 520px;  
+    width: 550px;
+    height: 331.6px;
+  }
+}
+
+
+@media (max-width: 1024px) {  
+  .arrow-back {
+    top: 30px !important;
+    right: 20px !important;
+  }
+  
+  .arrow-forward {
+  bottom: 73px !important;  
+    left: 50% !important;
+    transform: translateX(-50%) rotate(180deg) !important;
   }
 }
 
@@ -18,6 +32,7 @@
     width: 300px;
     height: 275px;
     gap: 6px;
+    margin-top: 175px;
   }
   
   .main p {
@@ -26,7 +41,7 @@
   }
   
   .main .comece {
-    font-size: 28px;
+    font-size: 28px;    
   }
   
   .main .opine_h {
@@ -55,6 +70,7 @@
   
   .upper-menu .logo-menu {
     margin: 40px 0 10px 0;
+    margin: 0px 0 0px 0;
   }
   
   .arrow-container {
@@ -67,8 +83,7 @@
   }
 
   .arrow-back {
-    top: 20px !important;
-    right: 20px;
+    top: 57px !important;
     width: 25px !important;
   }
 
@@ -76,30 +91,89 @@
   .mini-circle {
     width: 31px;
     height: 30px;
-    right: 53px;
-    top: 82px;
+    right: 20px;
+    top: 20px;
   }
 
   .menu ul {
     gap: 15px !important;
   }
+
+  .logo-reduzida-circle {
+    width: 112.5px !important;
+    height: 112.5px !important;
+    left: -4px !important;
+    top: -1px !important;
+  }
+
+  .logo-reduzida {
+    width: 53px !important;
+    left: 31.5px !important;
+    top: 13px !important;
+  }
+
+  .procedures-bg {
+    width: 70vw !important;
+    height: 100% !important;
+}
+
+}
+
+@media (max-width: 920px) {
+  .arrow-container {
+    margin-top: 8px;
+  }
 }
 
 @media (max-width: 900px) {
-  .arrow-container {
-    margin-top: 0px;
+
+  .arrow-back {
+  top: 58px !important;
   }
+
+}
+
+@media (max-width: 890px) {
+
+  .arrow-back {
+    top: 20px !important;
+  }
+
+  .arrow-container .arrow-forward {
+    bottom: 22px !important;
+    width: 25px !important;
+  }
+
 }
 
 @media (max-width: 850px) {
-  .arrow-container .arrow-forward {
-    bottom: 70px;
-  }
-
   .arrow-back {
-    top: 40px !important;
+    top: 33px !important;
   }
 
+  .arrow-container .arrow-forward {
+    bottom: 51px !important;
+    width: 25px !important;
+  }
+
+  .mini-circle {
+    right: 20px;
+    top: 20px;
+  }
+
+}
+
+@media (max-width: 900px) {
+  .mini-circle {
+    top: 73px;
+  }
+
+}
+
+@media (max-width: 850px) {
+  .mini-circle {
+    top: 60px;
+  }
 }
 
 @media (max-width: 800px) {
@@ -108,30 +182,81 @@
     height: 180.9px;
   }
 
+  #fullscreen-button {
+    right: 21px;
+    top: 46px;
+  }
+
+  .mini-circle p {
+    display: none;
+  }
+
+  .arrow-container .arrow-forward {
+    bottom: 34px !important;
+    width: 25px !important;
+  }
+
+  .arrow-back {
+    top: 21px !important;
+    width: 25px !important;
+  }
+
+}
+
+@media (max-width: 740px) {
+  .arrow-container .arrow-forward {
+    bottom: 34px !important;
+    width: 25px !important;
+  }
+
+  .arrow-back {
+    top: 21px !important;
+    width: 25px !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .arrow-container .arrow-forward {
+    bottom: 62px !important;
+    width: 25px !important;
+  }
+
+  .arrow-back {
+    top: 55px !important;
+    width: 25px !important;
+  }
 }
 
 @media (max-width: 700px) {
-  .arrow-container .arrow-forward {
+  /* .arrow-container .arrow-forward {
     bottom: 55px;
-  }
+  } */
   
   img.arrow-forward, 
   img.arrow-back {
     width: 20px;
   }
+
+  .arrow-container .arrow-forward {
+    bottom: 33px !important;
+    width: 25px !important;
+}
   
-  img.arrow-back {
-    top: 73px;
-  }
-  
-  .mini-circle {
-    right: 53px;
-    top: 52px;
-  }
-  
+.arrow-back {
+  top: 81px !important;
+  width: 25px !important;
+}
+
   #fullscreen-button {
-    right: 53px;
-    top: 56px;
+    right: 20px;
+    top: 20px;
+  }
+
+  .purple-arrow-back {
+    position: absolute;
+    bottom: 86px;
+    right: 54px;
+    width: 25px;
   }
 }
 
@@ -150,10 +275,10 @@
     width: 180px;
   }
 
-  .arrow-back {
+  /* .arrow-back {
     top: 60px !important;
     right: 20px;
-  }
+  } */
 
   img.arrow-forward, img.arrow-back {
     width: 25px;

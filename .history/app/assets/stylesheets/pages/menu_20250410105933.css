@@ -20,7 +20,7 @@
 
 .menu {
   width: var(--menu-width);
-  height: 100vh;
+  /* height: 100vh; */
   background-color: var(--menu-bg-color);
   display: flex;
   flex-direction: column;

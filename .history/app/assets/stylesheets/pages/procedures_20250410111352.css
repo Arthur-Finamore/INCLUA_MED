@@ -49,4 +49,25 @@
 }
 
 
+@media (max-width: 450px) {
+  .procedures-bg {
+    width: 100% !important;
+    height: auto !important; /* Altura automática baseada no conteúdo */
+    min-height: 100vh; /* Garante que ocupe pelo menos a altura da tela */
+    padding: 20px 10px;
+    gap: 15px;
+    flex-direction: column; /* Itens em coluna */
+    flex-wrap: nowrap; /* Não quebra em múltiplas colunas */
+    overflow-y: auto; /* Permite rolagem se necessário */
+  }
 
+  .procedure-item {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .procedures {
+    width: 80% !important;
+    height: auto !important;
+  }
+}
