@@ -3,8 +3,8 @@
 ========================= */
 @media (max-width: 1260px) {
   iframe.youtube-player {
-    width: 1050px;
-    height: 500px;
+    width: 850px;
+    height: 520px;
   }
 }
 
