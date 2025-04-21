@@ -3,14 +3,10 @@
     <div class="main procedures-container">
       <h1 class="comece"> Procedimentos</h1>
       <p> Escolha o procedimento desejado: </p>
-      <div class="procedures-bg" 
-           data-controller="procedures-carousel"
-           data-procedures-carousel-items-per-page-value="4">
-        <button class="carousel-button prev" 
-                data-procedures-carousel-target="prevButton"
-                data-action="click->procedures-carousel#prev">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 18l-6-6 6-6"/>
+      <div class="procedures-bg" data-controller="procedures-carousel">
+        <button class="carousel-button prev-button" data-procedures-carousel-target="prevButton">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
         </button>
 
@@ -41,11 +37,9 @@
           </div>
         </div>
 
-        <button class="carousel-button next" 
-                data-procedures-carousel-target="nextButton"
-                data-action="click->procedures-carousel#next">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 18l6-6-6-6"/>
+        <button class="carousel-button next-button" data-procedures-carousel-target="nextButton">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
           </svg>
         </button>
       </div>

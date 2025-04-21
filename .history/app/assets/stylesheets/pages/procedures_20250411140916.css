@@ -1,0 +1,52 @@
+.procedures-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 909px;
+    height: 547px;
+    background-color: #f2f2f2;
+    border-radius: 12px;
+    padding: 40px 20px;
+}
+
+.procedures {
+    width: calc(248px * 0.9);  
+    height: calc(150px * 0.9); 
+}
+
+.procedures-bg .procedure-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900 !important;
+  font-size: 17px !important; 
+  color: #592580;
+  width: 155px;
+  height: 31px;
+  text-align: center;
+  word-wrap: break-word;
+  margin: 5px auto 0;
+}
+
+.procedure-item {
+  text-align: center;
+  margin-bottom: 20px; 
+}
+
+.back-arrow {
+  position: absolute;
+  top: 50%; /* Vertically align with fullscreen button */
+  left: 20px; /* Adjust to align horizontally with navbar arrow */
+  transform: translateY(-50%);
+  color: #592580;
+  text-decoration: none;
+}
+
+.back-arrow img {
+  width: 24px; /* Match the size of the navbar arrow */
+  height: 24px;
+  fill: #592580; /* Apply the specified color */
+}
+
+
+

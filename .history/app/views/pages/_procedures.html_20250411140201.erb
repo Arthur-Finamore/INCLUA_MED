@@ -1,0 +1,37 @@
+<turbo-frame class="active-screen-default" id="active-screen">
+  <div class="active-screen">
+    <div class="main procedures-container">
+      <h1 class="comece"> Procedimentos</h1>
+      <p> Escolha o procedimento desejado: </p>
+      <div class="procedures-bg" data-controller="procedures-carousel">
+        <div class="procedures-container">
+          <button class="carousel-button prev-button" data-procedures-carousel-target="prevButton">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+          </button>
+
+          <div class="carousel-container" data-procedures-carousel-target="container">
+            <% @procedures.each do |procedure| %>
+              <div class="procedure-item" data-procedures-carousel-target="item">
+                <div class="procedure-content">
+                  <h3><%= procedure.name %></h3>
+                  <p><%= procedure.description %></p>
+                  <div class="procedure-price">
+                    <span>R$ <%= number_with_precision(procedure.price, precision: 2) %></span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <button class="carousel-button next-button" data-procedures-carousel-target="nextButton">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</turbo-frame>

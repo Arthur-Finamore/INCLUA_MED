@@ -1,0 +1,111 @@
+.procedures-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    max-width: 909px;
+    min-height: 547px;
+    background-color: #f2f2f2;
+    border-radius: 12px;
+    padding: 40px 20px;
+    position: relative;
+}
+
+.procedures {
+    width: calc(248px * 0.9);  
+    height: calc(150px * 0.9); 
+}
+
+.procedures-bg .procedure-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900 !important;
+  font-size: 17px !important; 
+  color: #592580;
+  width: 155px;
+  height: 31px;
+  text-align: center;
+  word-wrap: break-word;
+  margin: 5px auto 0;
+}
+
+.procedure-item {
+  text-align: center;
+  margin-bottom: 20px; 
+  transition: opacity 0.3s ease;
+}
+
+.procedure-item.hidden {
+  display: none;
+}
+
+.back-arrow {
+  position: absolute;
+  top: 50%; /* Vertically align with fullscreen button */
+  left: 20px; /* Adjust to align horizontally with navbar arrow */
+  transform: translateY(-50%);
+  color: #592580;
+  text-decoration: none;
+}
+
+.back-arrow img {
+  width: 24px; /* Match the size of the navbar arrow */
+  height: 24px;
+  fill: #592580; /* Apply the specified color */
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #592580;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-button:hover {
+  opacity: 0.8;
+}
+
+.carousel-button.prev {
+  left: 20px;
+}
+
+.carousel-button.next {
+  right: 20px;
+}
+
+.carousel-button.hidden {
+  display: none;
+}
+
+@media (max-width: 950px) {
+  .procedures-bg {
+    padding: 40px 60px;
+  }
+
+  .procedure-item {
+    flex: 0 0 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 600px) {
+  .procedure-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+
+

@@ -1,13 +1,15 @@
 .procedures-bg {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 909px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
     background-color: #f2f2f2;
     border-radius: 12px;
-    padding: 20px;
-    position: relative;
     overflow: hidden;
 }
 
@@ -46,7 +48,7 @@
         height: 70vh;
         max-height: 70%;
         justify-content: flex-start !important;
-
+        padding: 1rem;
     }
 
     .carousel-container {
@@ -55,12 +57,53 @@
         transition: transform 0.3s ease;
         gap: 10px;
         padding-top: 16px;
-        /* transform: translateX(-796px); */
     }
 
     .procedure-item {
-        /* flex: 0 0 calc(50% - 7.5px);
-        min-width: calc(50% - 7.5px); */
+        flex: 0 0 calc(50% - 7.5px);
+        min-width: calc(50% - 7.5px);
+    }
+
+    .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        transition: all 0.3s ease;
+    }
+
+    .carousel-button:hover {
+        background: #f3f4f6;
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-button.prev-button {
+        left: 0;
+    }
+
+    .carousel-button.next-button {
+        right: 0;
+    }
+}
+
+@media (max-width: 540px) {
+    .procedures-bg {
+        padding: 0.5rem;
+    }
+
+    .carousel-button {
+        width: 35px;
+        height: 35px;
     }
 }
 
@@ -81,7 +124,31 @@
     margin: 5px auto 0;
 }
 
+.procedures-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
 .procedure-item {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 300px;
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
     text-align: center;
     transition: opacity 0.3s ease;
     display: flex;
@@ -95,48 +162,18 @@
 }
 
 .back-arrow {
-  position: absolute;
-  top: 50%; /* Vertically align with fullscreen button */
-  left: 20px; /* Adjust to align horizontally with navbar arrow */
-  transform: translateY(-50%);
-  color: #592580;
-  text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: #592580;
+    text-decoration: none;
 }
 
 .back-arrow img {
-  width: 24px; /* Match the size of the navbar arrow */
-  height: 24px;
-  fill: #592580; /* Apply the specified color */
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #592580;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    transition: opacity 0.3s ease;
-}
-
-.carousel-button:hover {
-    opacity: 0.8;
-}
-
-.carousel-button.prev {
-    left: 20px;
-}
-
-.carousel-button.next {
-    right: 20px;
+    width: 24px;
+    height: 24px;
+    fill: #592580;
 }
 
 .carousel-button.hidden {

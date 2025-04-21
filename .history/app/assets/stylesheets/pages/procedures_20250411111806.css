@@ -19,13 +19,12 @@
         height: auto;
         min-height: 547px;
         width: 909px;
-        justify-content: flex-start !important;
     }
 
     .carousel-container {
         display: flex;
         flex-wrap: wrap;
-        width: 100%;
+        /* width: 100%; */
         gap: 20px;
         transform: none !important;
     }
@@ -45,17 +44,13 @@
     .procedures-bg {
         height: 70vh;
         max-height: 70%;
-        justify-content: flex-start !important;
-
     }
 
     .carousel-container {
         display: flex;
-        width: 100%;
+        /* width: 9000px; */
         transition: transform 0.3s ease;
         gap: 10px;
-        padding-top: 16px;
-        /* transform: translateX(-796px); */
     }
 
     .procedure-item {
@@ -143,7 +138,12 @@
     display: none;
 }
 
-
+@media (max-width: 600px) {
+    .procedure-item {
+        flex: 0 0 calc(100% - 10px);
+        min-width: calc(100% - 10px);
+    }
+}
 
 
 

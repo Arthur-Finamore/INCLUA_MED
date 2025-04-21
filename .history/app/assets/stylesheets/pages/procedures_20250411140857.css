@@ -7,7 +7,7 @@
     background-color: #f2f2f2;
     border-radius: 12px;
     padding: 20px;
-    position: relative;
+    /* position: relative; */
     overflow: hidden;
 }
 
@@ -112,6 +112,7 @@
 .carousel-button {
     position: absolute;
     top: 50%;
+    /* bottom: 5%; */
     transform: translateY(-50%);
     background: #592580;
     color: white;

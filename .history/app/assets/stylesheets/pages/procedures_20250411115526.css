@@ -1,14 +1,15 @@
 .procedures-bg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 909px;
-    background-color: #f2f2f2;
-    border-radius: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
     padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
-    overflow: hidden;
+    min-height: 547px;
+    width: 909px;
+    justify-content: flex-start !important;
 }
 
 /* Estilos para telas maiores que 950px */
@@ -45,28 +46,29 @@
     .procedures-bg {
         height: 70vh;
         max-height: 70%;
+        width: 100%;
         justify-content: flex-start !important;
-
+        overflow: hidden;
     }
 
     .carousel-container {
         display: flex;
-        width: 100%;
         transition: transform 0.3s ease;
         gap: 10px;
         padding-top: 16px;
-        /* transform: translateX(-796px); */
+        width: max-content;
     }
 
     .procedure-item {
-        /* flex: 0 0 calc(50% - 7.5px);
-        min-width: calc(50% - 7.5px); */
+        width: calc(50% - 5px);
+        min-width: 248px;
+        margin: 0;
     }
-}
 
-.procedures {
-    width: calc(248px * 0.9);  
-    height: calc(150px * 0.9); 
+    .procedures {
+        width: calc(248px * 0.9);
+        height: calc(150px * 0.9);
+    }
 }
 
 .procedures-bg .procedure-title {
@@ -88,6 +90,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
 
 .procedure-item.hidden {
@@ -143,7 +150,12 @@
     display: none;
 }
 
-
+@media (max-width: 600px) {
+    .procedure-item {
+        flex: 0 0 calc(100% - 10px);
+        min-width: calc(100% - 10px);
+    }
+}
 
 
 
